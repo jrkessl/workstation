@@ -24,5 +24,8 @@ sudo apt install keepassxc
 # Dowwnload file (manually, with curl does not work, not sure why) then: 
 # sudo apt install ./snowflake-1.0.4-setup-amd64.deb
 
+# visual studio code
+# manually through https://code.visualstudio.com/docs/setup/linux
+
 # install virtualbox?
 # sudo apt-get install virtualbox (untested, but this was the command). 
