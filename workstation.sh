@@ -31,5 +31,8 @@ sudo apt install keepassxc
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 
+# teams
+# manual from: https://www.microsoft.com/en-ww/microsoft-teams/download-app#desktopAppDownloadregion
+
 # install virtualbox?
 # sudo apt-get install virtualbox (untested, but this was the command). 
