@@ -21,8 +21,7 @@ sudo apt install keepassxc
 
 # Snowflake (ftp and scp client)
 # https://github.com/subhra74/snowflake
-
-# Dowwnload file, then: 
+# Dowwnload file (manually, with curl does not work, not sure why) then: 
 # sudo apt install ./snowflake-1.0.4-setup-amd64.deb
 
 # install virtualbox?
