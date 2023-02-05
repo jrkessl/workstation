@@ -27,5 +27,9 @@ sudo apt install keepassxc
 # visual studio code
 # manually through https://code.visualstudio.com/docs/setup/linux
 
+# chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+
 # install virtualbox?
 # sudo apt-get install virtualbox (untested, but this was the command). 
