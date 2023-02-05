@@ -1,7 +1,13 @@
 #!/bin/bash
 apt get update
 apt get upgrade -y 
+
+# filezilla
 apt get install filezilla -y
+
+# keepassxc
+sudo apt install keepassxc
+# https://keepassxc.org/download/#linux
 
 # Snowflake (ftp e scp client)
 # https://github.com/subhra74/snowflake
