@@ -91,7 +91,6 @@ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://
 sudo apt update
 sudo apt install terraform -y
 
-
 # tree
 sudo apt  install tree
 
@@ -106,3 +105,10 @@ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv
 sudo apt install unzip -y
 unzip /tmp/awscliv2.zip -d /tmp
 sudo /tmp/aws/install
+
+# kubectl
+curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.23.15/2023-01-11/bin/linux/amd64/kubectl
+sudo mv kubectl /usr/bin/
+sudo chmod +x /usr/bin/kubectl
+
+# lens
