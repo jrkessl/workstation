@@ -73,3 +73,20 @@ sudo gpasswd -a juliano docker
 
 # nmap
 sudo apt  install nmap -y
+
+# postgresql client
+sudo apt-get install postgresql-client-14 -y
+
+# mysql client
+sudo apt-get install mysql-client-8.0 -y
+
+# terraform
+
+# tree
+sudo apt  install tree
+
+# zoom
+# manualmente em https://gtl.zoom.us/download
+
+# multipass
+sudo snap install multipass
