@@ -49,3 +49,31 @@ curl https://get.helm.sh/helm-v2.17.0-linux-amd64.tar.gz -o /tmp/helm-v2.17.0-li
 tar -xzvf /tmp/helm-v2.17.0-linux-amd64.tar.gz -C /tmp/
 sudo cp /tmp/linux-amd64/helm /usr/bin/helm2
 
+# nano 
+echo "set linenumbers" > /home/ubuntu/.nanorc
+chown ubuntu:ubuntu /home/ubuntu/.nanorc
+chmod 744 /home/ubuntu/.nanorc
+
+# docker
+sudo apt-get update
+sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+sudo mkdir -m 0755 -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+# se der erro de que o repo não tem release file, ir no arquivo /etc/apt/sources.list.d/docker.list e substituir "linux/debian jammy" por "linux/ubuntu jammy"
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo gpasswd -a juliano docker
+
+
+
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
