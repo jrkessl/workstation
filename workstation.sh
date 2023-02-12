@@ -2,13 +2,6 @@
 apt get update
 apt get upgrade -y 
 
-# manual configs:
-# - konsole
-#  -- ctrl + c for copy, ctrl + v for paste
-#  -- font size
-# - adjust task switcher
-# - adjust task bar
-
 # curl
 sudo apt install curl
 
@@ -92,7 +85,7 @@ sudo apt update
 sudo apt install terraform -y
 
 # tree
-sudo apt  install tree
+sudo apt install tree
 
 # zoom
 # manualmente em https://gtl.zoom.us/download
@@ -112,3 +105,26 @@ sudo mv kubectl /usr/bin/
 sudo chmod +x /usr/bin/kubectl
 
 # lens
+curl -fsSL https://downloads.k8slens.dev/keys/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/lens-archive-keyring.gpg > /dev/null
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/lens-archive-keyring.gpg] https://downloads.k8slens.dev/apt/debian stable main" | sudo tee /etc/apt/sources.list.d/lens.list > /dev/null
+sudo apt update
+sudo apt install lens -y
+
+# manual configs:
+# - konsole
+#  -- ctrl + c for copy, ctrl + v for paste
+#  -- font size
+# - adjust task switcher
+# - adjust task bar
+
+# task switcher
+# /home/juliano/googledrive/estudo TI/kde-atalhos-janelas/taask-switcher.png
+
+# window shortcuts
+# /home/juliano/googledrive/estudo TI/kde-atalhos-janelas/*.kwinrule
+
+# shortcuts from .bashrc
+
+# aws credentials and profiles:
+# ~/.aws/config
+# ~/.aws/
