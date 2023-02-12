@@ -81,6 +81,16 @@ sudo apt-get install postgresql-client-14 -y
 sudo apt-get install mysql-client-8.0 -y
 
 # terraform
+sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
+sudo apt update && sudo apt install gpg
+wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+gpg --no-default-keyring --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg --fingerprint
+# tem que bater com: 798A EC65 4E5C 1542 8C8E 42EE AA16 FCBC A621 E701
+# todo: automatizar verificação de que o comando gpg retorne a key acima.
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update
+sudo apt install terraform -y
+
 
 # tree
 sudo apt  install tree
@@ -90,3 +100,6 @@ sudo apt  install tree
 
 # multipass
 sudo snap install multipass
+
+# aws cli
+
