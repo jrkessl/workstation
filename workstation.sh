@@ -36,3 +36,16 @@ sudo dpkg -i google-chrome-stable_current_amd64.deb
 
 # install virtualbox?
 # sudo apt-get install virtualbox (untested, but this was the command). 
+
+# helm3
+curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+sudo apt-get install apt-transport-https --yes
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+sudo apt-get update
+sudo apt-get install helm
+
+# helm2 (need to manually check for a newer version)
+curl https://get.helm.sh/helm-v2.17.0-linux-amd64.tar.gz -o /tmp/helm-v2.17.0-linux-amd64.tar.gz
+tar -xzvf /tmp/helm-v2.17.0-linux-amd64.tar.gz -C /tmp/
+sudo cp /tmp/linux-amd64/helm /usr/bin/helm2
+
