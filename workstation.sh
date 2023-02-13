@@ -110,12 +110,17 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/lens-archive-keyring.gpg] ht
 sudo apt update
 sudo apt install lens -y
 
+# google drive shortcuts
+ln -s /home/juliano/googledrive/dinheiro/BairesDev/ViaPath/docs /home/juliano/Documents/docs
+ln -s /home/juliano/googledrive/dinheiro/BairesDev/ViaPath/docs /home/juliano/Documents/docs
+
 # manual configs:
 # - konsole
 #  -- ctrl + c for copy, ctrl + v for paste
 #  -- font size
-# - adjust task switcher
 # - adjust task bar
+# - adjust Dolphin, two clicks to open
+# - adjust Dolphin, in details mode, file preview icon, size minimal
 
 # task switcher
 # /home/juliano/googledrive/estudo TI/kde-atalhos-janelas/taask-switcher.png
