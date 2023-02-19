@@ -2,14 +2,34 @@
 apt get update
 apt get upgrade -y 
 
+# manual configs:
+# - keyboard
+#   - layout, add, portuguese brazil, remove the other.
+# - konsole
+#   - configure keyboard shortcuts
+#     - ctrl + c for copy, ctrl + v for paste
+#   - font size
+#     - make new profile, make default
+#     - font size 11 (24 inch monitor)
+# - adjust task bar
+#   - move to the left
+#   - panel width 68
+#   - group: do no group
+# - system settings
+#   - workspace behavior
+#     - Two clicks to open
+#     - Clickin in scroll track: scrolls to the clicked location
+# - adjust Dolphin, view modes, details, preview icon size = minimal
+# - global theme: breeze dark
+
 # curl
 sudo apt install curl
 
 # filezilla
-apt get install filezilla -y
+sudo apt-get install filezilla -y
 
 # keepassxc
-sudo apt install keepassxc
+sudo apt-get install keepassxc
 # https://keepassxc.org/download/#linux
 
 # Snowflake (ftp and scp client)
@@ -39,9 +59,9 @@ tar -xzvf /tmp/helm-v2.17.0-linux-amd64.tar.gz -C /tmp/
 sudo cp /tmp/linux-amd64/helm /usr/bin/helm2
 
 # nano 
-echo "set linenumbers" > /home/ubuntu/.nanorc
-chown ubuntu:ubuntu /home/ubuntu/.nanorc
-chmod 744 /home/ubuntu/.nanorc
+echo "set linenumbers" > /home/juliano/.nanorc
+chown juliano:juliano /home/juliano/.nanorc
+chmod 744 /home/juliano/.nanorc
 
 # docker
 sudo apt-get update
@@ -108,21 +128,12 @@ sudo apt install lens -y
 
 # google drive shortcuts
 ln -s /home/juliano/googledrive/dinheiro/BairesDev/ViaPath/docs /home/juliano/Documents/docs
-ln -s /home/juliano/googledrive/dinheiro/BairesDev/ViaPath/docs /home/juliano/Documents/docs
 
 # spotify
 curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo apt-get update && sudo apt-get install spotify-client -y
 
-
-# manual configs:
-# - konsole
-#  -- ctrl + c for copy, ctrl + v for paste
-#  -- font size
-# - adjust task bar
-# - adjust Dolphin, two clicks to open
-# - adjust Dolphin, in details mode, file preview icon, size minimal
 
 # task switcher
 # /home/juliano/googledrive/estudo TI/kde-atalhos-janelas/taask-switcher.png
