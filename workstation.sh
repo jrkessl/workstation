@@ -11,31 +11,38 @@ apt get upgrade -y
 #   - font size
 #     - make new profile, make default
 #     - font size 11 (24 inch monitor)
+#   - toolbars: hide both
 # - adjust task bar
 #   - move to the left
 #   - panel width 68
 #   - group: do no group
 # - system settings
 #   - workspace behavior
-#     - Two clicks to open
-#     - Clickin in scroll track: scrolls to the clicked location
-# - adjust Dolphin, view modes, details, preview icon size = minimal
+#     - general behavior
+#       - clicking files or folders: selects them
+#       - clickin in scroll track: scrolls to the clicked location
+# - dolphin
+#   - configure
+#     - configure dolphin
+#       - view modes 
+#         - details
+#           - previes icon size: minimal
 # - global theme: breeze dark
 
 # curl
-sudo apt install curl
+sudo apt install curl -y
 
 # filezilla
 sudo apt-get install filezilla -y
 
 # keepassxc
-sudo apt-get install keepassxc
+sudo apt-get install keepassxc -y
 # https://keepassxc.org/download/#linux
 
 # Snowflake (ftp and scp client)
 # https://github.com/subhra74/snowflake
 # Dowwnload file (manually, with curl does not work, not sure why) then: 
-# sudo apt install ./snowflake-1.0.4-setup-amd64.deb
+# sudo apt install ./snowflake-1.0.4-setup-amd64.deb -y
 
 # visual studio code
 # manually through https://code.visualstudio.com/docs/setup/linux
@@ -49,6 +56,13 @@ sudo dpkg -i google-chrome-stable_current_amd64.deb
 
 # install virtualbox?
 # sudo apt-get install virtualbox (untested, but this was the command). 
+
+# google-drive-ocamlfuse
+sudo add-apt-repository ppa:alessandro-strada/ppa
+sudo apt-get update
+sudo apt-get install google-drive-ocamlfuse
+mkdir ~/googledrive
+google-drive-ocamlfuse ~/googledrive
 
 # helm3
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
@@ -77,7 +91,7 @@ echo \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 # se der erro de que o repo não tem release file, ir no arquivo /etc/apt/sources.list.d/docker.list e substituir "linux/debian jammy" por "linux/ubuntu jammy"
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 sudo gpasswd -a juliano docker
 
 # nmap
@@ -146,3 +160,14 @@ sudo apt-get update && sudo apt-get install spotify-client -y
 # aws credentials and profiles:
 # ~/.aws/config
 # ~/.aws/
+
+# company vpn
+cp /home/juliano/googledrive/dinheiro/BairesDev/ViaPath/cisco-anyconnect/anyconnect-linux64-4.10.04071-predeploy-k9.tar.gz /tmp
+cd /tmp
+tar -xzvf anyconnect-linux64-4.10.04071-predeploy-k9.tar.gz
+cd anyconnect-linux64-4.10.04071/
+cd vpn
+sudo ./vpn_install.sh
+# servers:
+# anydal.gtl.us
+# anyhdc.gtl.us
