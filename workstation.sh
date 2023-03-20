@@ -29,6 +29,9 @@ apt get upgrade -y
 #           - previes icon size: minimal
 # - global theme: breeze dark
 
+# jq
+sudo apt install jq -y
+
 # curl
 sudo apt install curl -y
 
