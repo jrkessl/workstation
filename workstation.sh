@@ -153,10 +153,12 @@ sudo apt-get update && sudo apt-get install spotify-client -y
 
 
 # task switcher
-# /home/juliano/googledrive/estudo TI/kde-atalhos-janelas/taask-switcher.png
+# type "task switcher" in the start menu and:
+# /home/juliano/googledrive/estudo-ti/kde-atalhos-janelas/taask-switcher.png
 
 # window shortcuts
-# /home/juliano/googledrive/estudo TI/kde-atalhos-janelas/*.kwinrule
+# type "task switcher" in the start menu and import file:
+# /home/juliano/googledrive/estudo-ti/kde-atalhos-janelas/kwin-rules-todas(2023-02-16).kwinrule
 
 # shortcuts from .bashrc
 
