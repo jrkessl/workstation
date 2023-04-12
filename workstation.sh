@@ -160,11 +160,16 @@ sudo apt-get update && sudo apt-get install spotify-client -y
 # type "task switcher" in the start menu and import file:
 # /home/juliano/googledrive/estudo-ti/kde-atalhos-janelas/kwin-rules-todas(2023-02-16).kwinrule
 
+# notifications position
+# start menu > type "notifications" > Popup > choose custom position.
+
 # shortcuts from .bashrc
+# todo: specify location, and automate
 
 # aws credentials and profiles:
 # ~/.aws/config
 # ~/.aws/
+# todo: specify location, and automate
 
 # company vpn
 cp /home/juliano/googledrive/dinheiro/BairesDev/ViaPath/cisco-anyconnect/anyconnect-linux64-4.10.04071-predeploy-k9.tar.gz /tmp
