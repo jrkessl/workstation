@@ -124,7 +124,7 @@ sudo apt install tree
 # manualmente em https://gtl.zoom.us/download
 
 # multipass
-sudo snap install multipass
+# sudo snap install multipass
 
 # aws cli
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip"
@@ -159,10 +159,13 @@ sudo apt-get update && sudo apt-get install spotify-client -y
 # /home/juliano/googledrive/estudo TI/kde-atalhos-janelas/*.kwinrule
 
 # shortcuts from .bashrc
+# there's a backup in: /home/juliano/googledrive/estudo-ti/kde-atalhos-janelas/.bashrc
 
 # aws credentials and profiles:
 # ~/.aws/config
 # ~/.aws/
+tar -xzvf /home/juliano/googledrive/estudo-ti/kde-atalhos-janelas/aws-creds -C ~/
+# then, add the keys in file "credentials"
 
 # company vpn
 cp /home/juliano/googledrive/dinheiro/BairesDev/ViaPath/cisco-anyconnect/anyconnect-linux64-4.10.04071-predeploy-k9.tar.gz /tmp
