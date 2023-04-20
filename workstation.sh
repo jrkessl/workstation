@@ -165,6 +165,9 @@ sudo apt-get update && sudo apt-get install spotify-client -y
 
 # shortcuts from .bashrc
 # there's a backup in: /home/juliano/googledrive/estudo-ti/kde-atalhos-janelas/.bashrc
+  # to make the backup from the workstation:
+  # cp /home/juliano/.bashrc /home/juliano/googledrive/estudo-ti/kde-atalhos-janelas/.bashrc
+    # todo: automate this backup.
 
 # aws credentials and profiles:
 # ~/.aws/config
