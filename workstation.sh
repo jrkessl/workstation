@@ -143,8 +143,11 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/lens-archive-keyring.gpg] ht
 sudo apt update
 sudo apt install lens -y
 
-# google drive shortcuts
+# shortcuts
 ln -s /home/juliano/googledrive/dinheiro/BairesDev/ViaPath/docs /home/juliano/Documents/docs
+ln -s /home/juliano/googledrive/dinheiro/BairesDev/ViaPath/docs d
+ln -s /home/juliano/Documents/gitlab-viapath/ gl
+ln -s /home/juliano/Documents/github/ gh
 
 # spotify
 curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
