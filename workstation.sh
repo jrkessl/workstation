@@ -1,6 +1,7 @@
 #!/bin/bash
-apt get update
-apt get upgrade -y 
+set -e
+apt-get update
+apt-get upgrade -y 
 
 # manual configs:
 # - keyboard
@@ -15,7 +16,6 @@ apt get upgrade -y
 # - adjust task bar
 #   - move to the left
 #   - panel width 68
-#   - group: do no group
 # - system settings
 #   - workspace behavior
 #     - general behavior
@@ -144,6 +144,7 @@ sudo apt update
 sudo apt install lens -y
 
 # shortcuts
+google-drive-ocamlfuse ~/googledrive
 ln -s /home/juliano/googledrive/dinheiro/BairesDev/ViaPath/docs /home/juliano/Documents/docs
 ln -s /home/juliano/googledrive/dinheiro/BairesDev/ViaPath/docs d
 ln -s /home/juliano/Documents/gitlab-viapath/ gl
@@ -154,20 +155,19 @@ curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo 
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo apt-get update && sudo apt-get install spotify-client -y
 
-
 # task switcher
 # type "task switcher" in the start menu and:
 # /home/juliano/googledrive/estudo-ti/kde-atalhos-janelas/taask-switcher.png
 
 # window shortcuts
-# type "task switcher" in the start menu and import file:
+# type "task switcher" in the start menu, go to 'window rules' and import file:
 # /home/juliano/googledrive/estudo-ti/kde-atalhos-janelas/kwin-rules-todas(2023-02-16).kwinrule
 
 # notifications position
-# start menu > type "notifications" > Popup > choose custom position.
+# start menu > type "notifications - system settings" > Popup > choose custom position.
 
 # shortcuts from .bashrc
-# there's a backup in: /home/juliano/googledrive/estudo-ti/kde-atalhos-janelas/.bashrc
+# there's a backup in: /home/juliano/googledrive/estudo-ti/kde-atalhos-janelas/.bashrc	
   # to make the backup from the workstation:
   # cp /home/juliano/.bashrc /home/juliano/googledrive/estudo-ti/kde-atalhos-janelas/.bashrc
     # todo: automate this backup.
