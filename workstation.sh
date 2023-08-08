@@ -188,3 +188,5 @@ sudo ./vpn_install.sh
 # servers:
 # anydal.gtl.us
 # anyhdc.gtl.us
+
+# install spectacle
