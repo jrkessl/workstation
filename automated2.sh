@@ -4,29 +4,30 @@ echo "hello world from permissions2"
 # jq
 echo ""
 echo "Step 2 - install jq"
-sleep 1
+sleep $time
 sudo apt install jq -y
 
 # curl
 echo ""
 echo "Step 3 - install curl"
-sleep 1
+sleep $time
 sudo apt install curl -y
 
 # filezilla
 echo ""
 echo "Step 4 - install filezilla"
-sleep 1
+sleep $time
 sudo apt-get install filezilla -y
 
 # keepassxc
 echo ""
 echo "Step 5 - install keepassxc"
-sleep 1
+sleep $time
 sudo apt-get install keepassxc -y
 
 echo ""
 echo "Step 6 - install Chrome"
+sleep $time
 if [[ $(apt list --installed | grep google-chrome-stable | wc -l) > 0 ]]; then # Is chrome already installed?
     echo "Chrome is already installed. "
 else
@@ -39,6 +40,7 @@ fi
 # google-drive-ocamlfuse
 echo ""
 echo "Step 7 - install google-drive-ocamlfuse"
+sleep $time
 if [[ $(apt list --installed | grep google-drive-ocamlfuse | wc -l) > 0 ]]; then # Is it already installed?
     echo "google-drive-ocamlfuse is already installed. Skipping."
 else

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# This is the user for which we will install stuff.
-export myuser=juliano
+export myuser=juliano    # This is the user for which we will install stuff.
+export time=0.5          # This is how long to wait after some outputs so I can read them. 
 
 # Check if we are running as root
 current_user=$(whoami)
@@ -15,7 +15,7 @@ fi
 # Install KDE
 echo ""
 echo "Step 1 - install KDE"
-sleep 1
+sleep $time
 # Note: KDE will ask for the default graphics provider. Select sddm. Consider automating this.
 # DEBIAN_FRONTEND=noninteractive This does not do any good. 
 if [[ $(apt list --installed | grep kde-plasma-desktop | wc -l) > 0 ]]; then # If KDE plasma is already installed
