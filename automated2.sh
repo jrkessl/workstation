@@ -36,3 +36,16 @@ else
     echo "Done installing Chrome."
 fi
 
+# google-drive-ocamlfuse
+echo ""
+echo "Step 7 - install google-drive-ocamlfuse"
+if [[ $(apt list --installed | grep google-drive-ocamlfuse | wc -l) > 0 ]]; then # Is it already installed?
+    echo "google-drive-ocamlfuse is already installed. Skipping."
+else
+    add-apt-repository ppa:alessandro-strada/ppa -y
+    apt-get update
+    apt-get install google-drive-ocamlfuse
+    mkdir "/home/${myuser}/googledrive"
+    echo "alias map-googledrive=\"google-drive-ocamlfuse /home/juliano/googledrive\"" >> "/home/${myuser}/.bashrc"
+fi
+# then, as juliano (or whatever user), to mount: $ google-drive-ocamlfuse /home/juliano/googledrive

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# This is the user for which we will install stuff.
+export myuser=juliano
+
 # Check if we are running as root
 current_user=$(whoami)
 echo "The current user is $current_user"
