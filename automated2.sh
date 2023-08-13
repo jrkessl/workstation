@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "hello world from permissions2"
+set -e
 
 # jq
 echo ""
@@ -131,8 +131,70 @@ results="${results}\ntree......................... installed or reinstalled with
 # terraform
 echo ""
 echo "Step 15 - install terraform"
+sleep $time
+if [[ $(apt list --installed | grep terraform | wc -l) > 0 ]]; then # Is it already installed?
+    echo "terraform is already installed. Skipping."
+    results="${results}\nterraform.................... already installed"
+else
+    apt-get update
+    apt-get install -y gnupg software-properties-common
+    apt update
+    apt install gpg
+    wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+    gpg --no-default-keyring --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg --fingerprint
+# tem que bater com: 798A EC65 4E5C 1542 8C8E 42EE AA16 FCBC A621 E701
+# todo: automatizar verificação de que o comando gpg retorne a key acima.
+    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+    apt update
+    apt install terraform -y
+    echo "terraform installed now."
+    results="${results}\nterraform.................... installed now"
+fi
 
+# aws cli
+echo ""
+echo "Step 16 - install aws cli"
+sleep $time
+if [[ -e "/usr/local/bin/aws" ]]; then # Check if the application binary exists
+    echo "aws cli already installed."
+    results="${results}\naws cli...................... already installed"
+else
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip"
+    apt install unzip -y
+    unzip /tmp/awscliv2.zip -d /tmp
+    /tmp/aws/install
+    echo "terraform installed now."
+    results="${results}\naws cli...................... installed now"
+fi
 
+echo ""
+echo "Step 17 - kubectl (1.23)"
+sleep $time
+if [[ -e "/usr/bin/kubectl" ]]; then # Check if the application binary exists
+    echo "kubectl already installed."
+    results="${results}\nkubectl...................... already installed"
+else
+    curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.23.15/2023-01-11/bin/linux/amd64/kubectl
+    mv kubectl /usr/bin/
+    chmod +x /usr/bin/kubectl
+    echo "kubectl installed now."
+    results="${results}\nkubectl...................... installed now"
+fi
+
+echo ""
+echo "Step 18 - install lens"
+sleep $time
+if [[ $(apt list --installed | grep lens | wc -l) > 0 ]]; then # Is it already installed?
+    echo "lens is already installed. Skipping."
+    results="${results}\nlens......................... already installed"
+else
+    curl -fsSL https://downloads.k8slens.dev/keys/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/lens-archive-keyring.gpg > /dev/null
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/lens-archive-keyring.gpg] https://downloads.k8slens.dev/apt/debian stable main" | tee /etc/apt/sources.list.d/lens.list > /dev/null
+    apt update
+    apt install lens -y
+    echo "lens installed now"
+    results="${results}\nlens......................... installed now"
+fi
 
 
 
