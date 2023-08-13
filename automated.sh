@@ -12,6 +12,7 @@ fi
 # Install KDE
 echo ""
 echo "Step 1 - install KDE"
+sleep 1
 # Note: KDE will ask for the default graphics provider. Select sddm. Consider automating this.
 # DEBIAN_FRONTEND=noninteractive This does not do any good. 
 if [[ $(apt list --installed | grep kde-plasma-desktop | wc -l) > 0 ]]; then # If KDE plasma is already installed
@@ -23,8 +24,6 @@ if [[ $(apt list --installed | grep kde-plasma-desktop | wc -l) > 0 ]]; then # I
         exit 1
     fi
     $"$(pwd)/automated2.sh"
-    pwd
-    exit 0
 else
     apt-get install kde-full -y
     echo "Installed KDE. Now please reboot and resume with file 'automated2.sh'."
