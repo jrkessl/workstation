@@ -2,6 +2,7 @@
 
 export myuser=juliano    # This is the user for which we will install stuff.
 export time=0.5          # This is how long to wait after some outputs so I can read them. 
+export results           # This is to summarize results at the end of the script.
 
 # Check if we are running as root
 current_user=$(whoami)
@@ -20,6 +21,7 @@ sleep $time
 # DEBIAN_FRONTEND=noninteractive This does not do any good. 
 if [[ $(apt list --installed | grep kde-plasma-desktop | wc -l) > 0 ]]; then # If KDE plasma is already installed
     echo "KDE is already installed. Proceeding to file 'automated2.sh'."
+    results="KDE.......................... already installed"
     # Triggering file 'automated2.sh'
     if [[ ! -e "$(pwd)/automated2.sh" ]]; then
         echo "Error: script file 'automated2.sh' not found in current directory. It was going to be triggered now. Please fix this script or trigger 'automated2.sh' manually."
