@@ -73,5 +73,72 @@ else
     results="${results}\nhelm......................... already installed."
 fi
 
+# Fix up nano
+echo ""
+echo "Step 9 - fix up nano"
+if [[ $(cat /home/${myuser}/.nanorc | grep "set linenumbers" | wc -l) = 0 ]]; then
+    echo "set linenumbers" > /home/${myuser}/.nanorc
+    chown juliano:juliano /home/juliano/.nanorc
+    chmod 744 /home/juliano/.nanorc
+    echo "nano - configured now"
+    results="${results}\nnano......................... configured now"
+else
+    echo "nano - already configured"
+    results="${results}\nhelm......................... already configured"
+fi
+
+# docker
+echo ""
+echo "Step 10 - install docker"
+sleep $time
+apt install docker.io -y
+results="${results}\ndocker....................... installed or reinstalled with apt"
+gpasswd -a ${myuser} docker
+
+# nmap
+echo ""
+echo "Step 11 - install nmap"
+sleep $time
+sudo apt install nmap -y
+results="${results}\nnmap......................... installed or reinstalled with apt"
+
+echo ""
+echo "Step 12 - install postgres client"
+sleep $time
+sudo apt install postgresql-client-14 -y
+results="${results}\npostgresql-client-14......... installed or reinstalled with apt"
+
+echo ""
+echo "Step 13 - install mysql-client-8.0"
+sleep $time
+sudo apt install mysql-client-8.0 -y
+results="${results}\nmysql-client-8.0............. installed or reinstalled with apt"
+
+echo ""
+echo "Step 14 - install tree"
+sleep $time
+sudo apt install tree -y
+results="${results}\ntree......................... installed or reinstalled with apt"
+
+# to install more apps with apt: 
+# # X
+# echo ""
+# echo "Step X - install X"
+# sleep $time
+# sudo apt install X -y
+# results="${results}\nX............................ installed or reinstalled with apt"
+
+# terraform
+echo ""
+echo "Step 15 - install terraform"
+
+
+
+
+
 echo -e ${results}
+
+echo ""
+echo "todo:"
+echo "user juliano cannot run docker commands without sudo"
 
