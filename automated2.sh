@@ -60,4 +60,18 @@ else
 fi
 # then, as juliano (or whatever user), to mount: $ google-drive-ocamlfuse /home/juliano/googledrive
 
+# helm 3
+echo ""
+echo "Step 8 - install helm (latest)"
+sleep $time
+if [[ ! -e "/usr/local/bin/helm" ]]; then # Check if helm binary does not exist
+    curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+    echo "Done installing Helm"
+    results="${results}\nhelm......................... installed now"
+else
+    echo "Helm skipped - seems like it's installed already"
+    results="${results}\nhelm......................... already installed."
+fi
+
 echo -e ${results}
+
