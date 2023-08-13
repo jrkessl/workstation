@@ -29,6 +29,6 @@ if [[ $(apt list --installed | grep kde-plasma-desktop | wc -l) > 0 ]]; then # I
     $"$(pwd)/automated2.sh"
 else
     apt-get install kde-full -y
-    echo "Installed KDE. Now please reboot and resume with file 'automated2.sh'."
+    echo "Installed KDE. Now please reboot and run this script again."
 fi
 
