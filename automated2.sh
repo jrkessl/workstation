@@ -215,6 +215,8 @@ else
     echo "Choose the backup file, that will be sugested."
     echo "Or choose to quit and do nothing."
     echo ""
+    echo "If you see error 'Application plasmashell could not be found...' reboot the workstation and the updated configs will be there."
+    echo ""
     su juliano -c "./transfuse.sh"
     echo ""
     echo "Done with transfuse."
