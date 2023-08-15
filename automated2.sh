@@ -196,6 +196,32 @@ else
     results="${results}\nlens......................... installed now"
 fi
 
+echo ""
+echo "Step 19 - KDE configs with transfuse"
+sleep $time
+if [[ -e "/home/${myuser}/transfuse" ]]; then # Check if transfuse project is already here
+    echo "KDE configs skipped."
+    results="${results}\nKDE configs with transfuse... already installed"
+else
+    olddir=$(pwd)
+    cd /home/${myuser}/
+    git clone https://gitlab.com/cscs/transfuse.git
+    cp workstation/${transfuse_backup} transfuse/
+    cd transfuse
+    echo ""
+    echo "Running transfuse."
+    echo "Choose the Restore option;"
+    echo "Type username '${myuser}'"
+    echo "Choose the backup file, that will be sugested."
+    echo "Or choose to quit and do nothing."
+    echo ""
+    su juliano -c "./transfuse.sh"
+    echo ""
+    echo "Done with transfuse."
+    cd $pwd
+fi
+# also consider: Plasma Customization Server ; https://store.kde.org/p/1298955/
+# also consider: https://github.com/Prayag2/konsave
 
 
 echo -e ${results}
@@ -203,4 +229,9 @@ echo -e ${results}
 echo ""
 echo "todo:"
 echo "user juliano cannot run docker commands without sudo"
+echo ""
+echo "Steps that cannot be automated:"
+echo "add local machine public key to github account"
+echo "configure local git username & email"
+
 
