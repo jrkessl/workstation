@@ -225,6 +225,31 @@ fi
 # also consider: Plasma Customization Server ; https://store.kde.org/p/1298955/
 # also consider: https://github.com/Prayag2/konsave
 
+echo ""
+echo "Step 20 - Visual Studio Code"
+sleep $time
+if [[ $(apt list --installed | grep code/now| wc -l) > 0 ]]; then # Is it already installed?
+    echo "Visual Studio Code already installed."
+    results="${results}\nVisual Studio Code........... already installed"
+else
+    curl https://az764295.vo.msecnd.net/stable/6c3e3dba23e8fadc360aed75ce363ba185c49794/code_1.81.1-1691620686_amd64.deb -o /tmp/code_1.81.1-1691620686_amd64.deb
+    apt install /tmp/code_1.81.1-1691620686_amd64.deb
+    echo "Visual Studio Code installed now."
+    results="${results}\nVisual Studio Code........... installed now"
+fi
+
+echo ""
+echo "Step 21 - add ${myuser} to sudoers"
+sleep $time
+if [[ -e "/etc/sudoers.d/${myuser}" ]]; then # Check if sudoers file already exist
+    echo "Add ${myuser} to sudoers, already done."
+    results="${results}\nAdd ${myuser} to sudoers..... already done"
+else
+    echo "${myuser}  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/${myuser}
+    echo "Add ${myuser} to sudoers, done now."
+    results="${results}\nAdd ${myuser} to sudoers..... done now"
+fi
+
 
 echo -e ${results}
 
@@ -235,5 +260,8 @@ echo ""
 echo "Steps that cannot be automated:"
 echo "add local machine public key to github account"
 echo "configure local git username & email"
+echo "Sync to Visual Studio Code"
+echo "Sync google accounts in Chrome"
+
 
 
