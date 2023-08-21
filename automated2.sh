@@ -221,6 +221,8 @@ else
     echo ""
     echo "Done with transfuse."
     cd $pwd
+    echo "KDE configs installed now."
+    results="${results}\nKDE configs with transfuse... installed now"
 fi
 # also consider: Plasma Customization Server ; https://store.kde.org/p/1298955/
 # also consider: https://github.com/Prayag2/konsave
@@ -243,11 +245,11 @@ echo "Step 21 - add ${myuser} to sudoers"
 sleep $time
 if [[ -e "/etc/sudoers.d/${myuser}" ]]; then # Check if sudoers file already exist
     echo "Add ${myuser} to sudoers, already done."
-    results="${results}\nAdd ${myuser} to sudoers..... already done"
+    results="${results}\nAdd ${myuser} to sudoers...... already done"
 else
     echo "${myuser}  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/${myuser}
     echo "Add ${myuser} to sudoers, done now."
-    results="${results}\nAdd ${myuser} to sudoers..... done now"
+    results="${results}\nAdd ${myuser} to sudoers...... done now"
 fi
 
 
