@@ -1,0 +1,66 @@
+[Desktop Entry]
+DefaultProfile=Profile 1.profile
+
+[MainWindow]
+RestorePositionForNextInstance=false
+State=AAAA/wAAAAD9AAAAAQAAAAAAAAAAAAAAAPwCAAAAAfsAAAAcAFMAUwBIAE0AYQBuAGEAZwBlAHIARABvAGMAawAAAAAA/////wAAANUBAAADAAAHOgAAA/0AAAAEAAAABAAAAAgAAAAI/AAAAAEAAAACAAAAAgAAABYAbQBhAGkAbgBUAG8AbwBsAEIAYQByAAAAAAD/////AAAAAAAAAAAAAAAcAHMAZQBzAHMAaQBvAG4AVABvAG8AbABiAGEAcgAAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+Virtual1 Height 1440x900=508
+Virtual1 Height 1638x878=849
+Virtual1 Height 1920x1080=1051
+Virtual1 Height 1920x969=940
+Virtual1 Height 800x600=508
+Virtual1 Virtual2 Height 1080x1920=691
+Virtual1 Virtual2 Height 1920x1080=1051
+Virtual1 Virtual2 Height 1920x969=940
+Virtual1 Virtual2 Height 800x600=571
+Virtual1 Virtual2 Width 1080x1920=1233
+Virtual1 Virtual2 Width 1920x1080=1781
+Virtual1 Virtual2 Width 1920x969=1781
+Virtual1 Virtual2 Width 800x600=400
+Virtual1 Virtual2 Window-Maximized 1080x1920=true
+Virtual1 Virtual2 Window-Maximized 1638x878=true
+Virtual1 Virtual2 Window-Maximized 1920x973=true
+Virtual1 Virtual2 XPosition 1080x1920=1835
+Virtual1 Virtual2 XPosition 1920x1080=139
+Virtual1 Virtual2 XPosition 1920x969=70
+Virtual1 Virtual2 XPosition 800x600=1920
+Virtual1 Virtual2 YPosition 1080x1920=989
+Virtual1 Virtual2 YPosition 1920x1080=29
+Virtual1 Virtual2 YPosition 1920x969=29
+Virtual1 Virtual2 YPosition 800x600=29
+Virtual1 Width 1440x900=911
+Virtual1 Width 1638x878=1568
+Virtual1 Width 1920x1080=1850
+Virtual1 Width 1920x969=1784
+Virtual1 Width 800x600=800
+Virtual1 Window-Maximized 1012x503=true
+Virtual1 Window-Maximized 1353x871=true
+Virtual1 Window-Maximized 1385x908=true
+Virtual1 Window-Maximized 1440x900=true
+Virtual1 Window-Maximized 1638x878=true
+Virtual1 Window-Maximized 1920x1080=true
+Virtual1 Window-Maximized 1920x969=true
+Virtual1 Window-Maximized 800x600=true
+Virtual1 Window-Maximized 941x463=true
+Virtual1 XPosition 1353x871=595
+Virtual1 XPosition 1385x908=611
+Virtual1 XPosition 1440x900=264
+Virtual1 XPosition 1638x878=70
+Virtual1 XPosition 1920x1080=70
+Virtual1 XPosition 1920x969=995
+Virtual1 XPosition 800x600=0
+Virtual1 YPosition 1353x871=400
+Virtual1 YPosition 1385x908=418
+Virtual1 YPosition 1440x900=188
+Virtual1 YPosition 1638x878=29
+Virtual1 YPosition 1920x1080=29
+Virtual1 YPosition 1920x969=29
+Virtual1 YPosition 800x600=48
+
+[Notification Messages]
+CloseAllTabs=true
+CloseSingleTab=true
+
+[UiSettings]
+ColorScheme=Default
