@@ -209,12 +209,14 @@ else
     cp workstation/${transfuse_backup} transfuse/
     cd transfuse
     echo ""
+    echo "***********************************"
+    echo "***** Attention! Please read. *****"
+    echo "***********************************"
     echo "Running transfuse."
     echo "Choose the Restore option;"
     echo "Type username '${myuser}'"
     echo "Choose the backup file, that will be sugested."
     echo "Or choose to quit and do nothing."
-    echo ""
     echo "If you see error 'Application plasmashell could not be found...' reboot the workstation and the updated configs will be there."
     echo ""
     su juliano -c "./transfuse.sh"
