@@ -247,7 +247,7 @@ echo "Step 21 - add ${myuser} to sudoers"
 sleep $time
 if [[ -e "/etc/sudoers.d/${myuser}" ]]; then # Check if sudoers file already exist
     echo "Add ${myuser} to sudoers, already done."
-    results="${results}\nAdd ${myuser} to sudoers...... already done"
+    results="${results}\nAdd ${myuser} to sudoers....... already done"
 else
     echo "${myuser}  ALL=(ALL) NOPASSWD:ALL" | tee -a /etc/sudoers.d/${myuser}
     echo "Add ${myuser} to sudoers, done now."
@@ -285,7 +285,7 @@ echo ""
 echo "Step 23 - konsole keyboard shortcuts"
 sleep $time
 file="/home/${myuser}/.local/share/kxmlgui5/konsole/sessionui.rc"
-if ![[ -e $file  ]]; then # Check if the konsole config file in which shortcuts go exists; looks like it does not get created until konsole is first opened, or maybe first configured. 
+if ![[ -e "$file"  ]]; then # Check if the konsole config file in which shortcuts go exists; looks like it does not get created until konsole is first opened, or maybe first configured. 
     error=0
     cp ./sessionui.rc "/home/${myuser}/.local/share/kxmlgui5/konsole/" || error=1
     if [[ $error -eq 1 ]]; then
