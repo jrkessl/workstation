@@ -249,10 +249,40 @@ if [[ -e "/etc/sudoers.d/${myuser}" ]]; then # Check if sudoers file already exi
     echo "Add ${myuser} to sudoers, already done."
     results="${results}\nAdd ${myuser} to sudoers...... already done"
 else
-    echo "${myuser}  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/${myuser}
+    echo "${myuser}  ALL=(ALL) NOPASSWD:ALL" | tee -a /etc/sudoers.d/${myuser}
     echo "Add ${myuser} to sudoers, done now."
-    results="${results}\nAdd ${myuser} to sudoers...... done now"
+    results="${results}\nAdd ${myuser} to sudoers....... done now"
 fi
+
+echo ""
+echo "Step 22 - setup portuguese keyboard layout"
+sleep $time
+if ![[ -e "/home/${myuser}/.config/kxkbrc" ]]; then # Check if the file in which the keyboard layout it set exists
+    echo "Error: looks like file /home/${myuser}/.config/kxkbrc does not exist."
+    # log results
+    echo "Setup keyboard language layout: skipped. File missing."
+    results="${results}\nSetup keyboard language...... skipped, file missing"
+else
+    # if the file exists, we do it. 
+    if [[ $(cat /home/${myuser}/.config/kxkbrc | grep LayoutList=br | wc -l) > 0 ]]; then
+        echo "Looks like file /home/${myuser}/.config/kxkbrc already has the keyboard configuration. Skipping."
+        # log results
+        echo "Setup keyboard language layout, already done."
+        results="${results}\nSetup keyboard language...... already done"
+    else
+        echo "Adding keyboard language layout config to file /home/${myuser}/.config/kxkbrc ..."
+        echo "" | tee -a /home/${myuser}/.config/kxkbrc
+        echo "[Layout]" | tee -a /home/${myuser}/.config/kxkbrc
+        echo "LayoutList=br" | tee -a /home/${myuser}/.config/kxkbrc
+        echo "Use=true" | tee -a /home/${myuser}/.config/kxkbrc
+        # log results
+        echo "Setup keyboard language layout, done now."
+        results="${results}\nSetup keyboard language...... done now"
+    fi
+fi
+
+
+
 
 
 echo -e ${results}
@@ -266,6 +296,6 @@ echo "add local machine public key to github account"
 echo "configure local git username & email"
 echo "Sync to Visual Studio Code"
 echo "Sync google accounts in Chrome"
-
+echo "Does not recognize Code is already installed"
 
 
