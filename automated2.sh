@@ -281,6 +281,31 @@ else
     fi
 fi
 
+echo ""
+echo "Step 23 - konsole keyboard shortcuts"
+sleep $time
+file="/home/${myuser}/.local/share/kxmlgui5/konsole/sessionui.rc"
+if ![[ -e $file  ]]; then # Check if the konsole config file in which shortcuts go exists; looks like it does not get created until konsole is first opened, or maybe first configured. 
+    error=0
+    cp ./sessionui.rc "/home/${myuser}/.local/share/kxmlgui5/konsole/" || error=1
+    if [[ $error -eq 1 ]]; then
+        # for some reason, could not save copy file sessionui.rc to its destination
+        # log results
+        echo "Konsole keyboard shortcuts, error. Could not copy into $file"
+        results="${results}\nKonsole keyboard shortcuts... Error, could not copy into $file"
+    else
+        # success
+        # log results
+        echo "Konsole keyboard shortcuts, done now."
+        results="${results}\nKonsole keyboard shortcuts... done now"
+    fi
+else
+    # file already exists. Skipping.
+    # log results
+    echo "Konsole keyboard shortcuts, skipping. File $file already exists"
+    results="${results}\nKonsole keyboard shortcuts... skipping, file exists"
+fi
+
 
 
 
