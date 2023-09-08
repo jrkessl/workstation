@@ -306,7 +306,101 @@ else
     results="${results}\nKonsole keyboard shortcuts... skipping, file exists"
 fi
 
+echo ""
+echo "Step 24 - Systems settings - workspace behavior"
+sleep $time
+# changing first file
+# here, in file $file, we find 'gtk-primary-button-warps-slider=false' and replace the 'false' with 'true'.
+file="/home/${myuser}/.config/gtk-3.0/settings.ini"
+count=0
+count=$(cat $file | grep gtk-primary-button-warps-slider | wc -l)
+if [[ $count -eq 0 ]]; then
+    # error: line is not in the file (maybe consider adding the line?)
+    # log result
+    echo "settings.ini - error, line missing; not changed"
+    results="${results}\nsettings.ini ................ error, line missing; not changed"
+elif [[ $count -eq 1 ]]; then 
+    # see if the value is true or false
+    if [[ $(cat $file | grep gtk-primary-button-warps-slider=false | wc -l) -eq 1 ]]; then
+        # value is false; replace with true
+        sed -i 's/gtk-primary-button-warps-slider=false/gtk-primary-button-warps-slider=true/' $file
+        # log result
+        echo "settings.ini - value updated"
+        results="${results}\nsettings.ini ................ value updated"
+    elif [[ $(cat $file | grep gtk-primary-button-warps-slider=true | wc -l) -eq 1 ]]; then
+        # value is true already; do nothing 
+        # log result
+        echo "settings.ini - already OK - nothing changed"
+        results="${results}\nsettings.ini ................ already done"
+    else
+        # unexpected result
+        # log result
+        echo "settings.ini - error - unexpected result while assessing state"
+        results="${results}\nsettings.ini ................ error - unexpected result while assessing state"
+fi
+# changing second file 
+# here, in file $file, we find 'gtk-primary-button-warps-slider=false' and replace the 'false' with 'true'.
+file="/home/${myuser}/.config/gtk-4.0/settings.ini"
+count=0
+count=$(cat $file | grep gtk-primary-button-warps-slider | wc -l)
+if [[ $count -eq 0 ]]; then
+    # error: line is not in the file (maybe consider adding the line?)
+    # log result
+    echo "settings.ini - error, line missing; not changed"
+    results="${results}\nsettings.ini ................ error, line missing; not changed"
+elif [[ $count -eq 1 ]]; then 
+    # see if the value is true or false
+    if [[ $(cat $file | grep gtk-primary-button-warps-slider=false | wc -l) -eq 1 ]]; then
+        # value is false; replace with true
+        sed -i 's/gtk-primary-button-warps-slider=false/gtk-primary-button-warps-slider=true/' $file
+        # log result
+        echo "settings.ini - value updated"
+        results="${results}\nsettings.ini ................ value updated"
+    elif [[ $(cat $file | grep gtk-primary-button-warps-slider=true | wc -l) -eq 1 ]]; then
+        # value is true already; do nothing 
+        # log result
+        echo "settings.ini - already OK - nothing changed"
+        results="${results}\nsettings.ini ................ already done"
+    else
+        # unexpected result
+        # log result
+        echo "settings.ini - error - unexpected result while assessing state"
+        results="${results}\nsettings.ini ................ error - unexpected result while assessing state"
+fi
+# changing third file
+# here, if we have string " LookAndFeelPackage=org.kde.breezedark.desktop" we put, under it, these lines:
+# "ScrollbarLeftClickNavigatesByPage=false
+# SingleClick=false"
 
+# usar arquivo "file.sh", ali tem como achar uma linha no arquivo e separar o que vem antes do que vem depois.
+
+
+
+
+file: ~/.config/kdeglobals
+under:
+"
+ [KDE]
+ LookAndFeelPackage=org.kde.breezedark.desktop
+"
+add:
+"
++ScrollbarLeftClickNavigatesByPage=false
++SingleClick=false
+"
+
+
+==============================================================================
+
+
+file: ~/.config/xsettingsd/xsettingsd.conf
+replace: 
+    -Gtk/PrimaryButtonWarpsSlider 0
+    +Gtk/PrimaryButtonWarpsSlider 1
+file: ~/.gtkrc-2.0
+replace: 
+    -gtk-primary-button-warps-slider=0
+    +gtk-primary-button-warps-slider=1
 
 
 
@@ -315,6 +409,7 @@ echo -e ${results}
 echo ""
 echo "todo:"
 echo "user juliano cannot run docker commands without sudo"
+echo "shortcuts"
 echo ""
 echo "Steps that cannot be automated:"
 echo "add local machine public key to github account"
@@ -323,4 +418,5 @@ echo "Sync to Visual Studio Code"
 echo "Sync google accounts in Chrome"
 echo "Does not recognize Code is already installed"
 
-
+# alias gs="git status"
+# alias ga="git add ."
