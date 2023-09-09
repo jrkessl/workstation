@@ -337,6 +337,7 @@ elif [[ $count -eq 1 ]]; then
         # log result
         echo "settings.ini - error - unexpected result while assessing state"
         results="${results}\nsettings.ini ................ error - unexpected result while assessing state"
+    fi
 fi
 # changing second file 
 # here, in file $file, we find 'gtk-primary-button-warps-slider=false' and replace the 'false' with 'true'.
@@ -366,41 +367,69 @@ elif [[ $count -eq 1 ]]; then
         # log result
         echo "settings.ini - error - unexpected result while assessing state"
         results="${results}\nsettings.ini ................ error - unexpected result while assessing state"
+    fi
 fi
 # changing third file
-# here, if we have string " LookAndFeelPackage=org.kde.breezedark.desktop" we put, under it, these lines:
+# here, if we have string "LookAndFeelPackage=org.kde.breezedark.desktop" in file "~/.config/kdeglobals" we put, under it, these lines:
 # "ScrollbarLeftClickNavigatesByPage=false
 # SingleClick=false"
+# So let's do it. 
+file="/home/${myuser}/.config/kdeglobals"
+positionstring="LookAndFeelPackage=org.kde.breezedark.desktop"
+# 1) First we see if the value even is in the file. 
+if [[ $(cat $file  | grep ${positionstring} | wc -l ) -eq 0 ]]; then
+    echo "Unexpected condition updating file ${file}: position string not found"
+    # save results
+    echo "kdeglobals - unexpected condition, positional string not found in file ${file}"
+    results="${results}\nkdeglobals .................. skipped - unexpected condition, positional string not found in file ${file}"
+else
+    # 3) Then we see if we didn't do it already. 
+    already1=$(cat $file | grep ScrollbarLeftClickNavigatesByPage | wc -l)
+    already2=$(cat $file | grep SingleClick | wc -l)
+    if [[ $already1 -gt 0 || $already2 -gt 0 ]]; then
+        # Looks like the values are there already. They could be true. But we were expecting the values to not be there at all. 
+        # save results
+        echo "kdeglobals - skipped - values are already present (but they could be true)"
+        results="${results}\nkdeglobals .................. skipped - values are already present (but they could be true)"
+    else
+        # Then we add the line, by splitting the file in two, then gluing the first bit, then the line, then the second bit.
+        # 2) Cut the first bit of the file. 
+        tempfile=$(mktemp) # create temp file 
+        position=$(awk "/${positionstring}/{ print NR; exit }" $file) # find where the positional string is 
+        head $file -n $position > $tempfile # cut file 
+        # 3) Cut the rest of the file. 
+        totalsize=$(cat $file | wc -l) # get total size of file 
+        rest=$((totalsize-position))
+        tempfile2=$(mktemp)
+        tail $file -n $rest > $tempfile2
+        # 4) Glue the final product 
+        cp $file /tmp/kdeglobals-backup # save backup first 
+        tempfile4=$(mktemp) # create temp file
+        cp $tempfile $tempfile4 # Add the first half 
+        echo "ScrollbarLeftClickNavigatesByPage=false" >> $tempfile4 # Add the lines we want 
+        echo "SingleClick=false" >> $tempfile4
+        cat $tempfile2 >> $tempfile4 # Add the second half 
+        cp $tempfile4 $file # Save the glued file where is has to be. 
+        # save results
+        echo "kdeglobals - updated now"
+        results="${results}\nkdeglobals .................. updated now"
+    fi
+fi
 
-# usar arquivo "file.sh", ali tem como achar uma linha no arquivo e separar o que vem antes do que vem depois.
 
-
-
-
-file: ~/.config/kdeglobals
-under:
-"
- [KDE]
- LookAndFeelPackage=org.kde.breezedark.desktop
-"
-add:
-"
-+ScrollbarLeftClickNavigatesByPage=false
-+SingleClick=false
-"
 
 
 ==============================================================================
 
 
-file: ~/.config/xsettingsd/xsettingsd.conf
-replace: 
-    -Gtk/PrimaryButtonWarpsSlider 0
-    +Gtk/PrimaryButtonWarpsSlider 1
-file: ~/.gtkrc-2.0
-replace: 
-    -gtk-primary-button-warps-slider=0
-    +gtk-primary-button-warps-slider=1
+# file: ~/.config/xsettingsd/xsettingsd.conf
+# replace: 
+#     -Gtk/PrimaryButtonWarpsSlider 0
+#     +Gtk/PrimaryButtonWarpsSlider 1
+# file: ~/.gtkrc-2.0
+# replace: 
+#     -gtk-primary-button-warps-slider=0
+#     +gtk-primary-button-warps-slider=1
 
 
 
@@ -418,5 +447,5 @@ echo "Sync to Visual Studio Code"
 echo "Sync google accounts in Chrome"
 echo "Does not recognize Code is already installed"
 
-# alias gs="git status"
-# alias ga="git add ."
+alias gs="git status"
+alias ga="git add ."
