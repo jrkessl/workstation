@@ -415,7 +415,48 @@ else
         results="${results}\nkdeglobals .................. updated now"
     fi
 fi
+# Changing fourth file
+file="/home/${myuser}/.config/xsettingsd/xsettingsd.conf"
+# What are we doing here? 
+# In the mentioned file, replace: 
+# This string: "Gtk/PrimaryButtonWarpsSlider 0"
+# With this:   "Gtk/PrimaryButtonWarpsSlider 1"
+count=0
+count=$(cat $file | grep "Gtk/PrimaryButtonWarpsSlider" | wc -l)
+if [[ $count -eq 0 ]]; then
+    # error: line is not in the file (maybe consider adding the line?)
+    # log result
+    echo "xsettingsd.conf - error, line missing; not changed"
+    results="${results}\nxsettingsd.conf ............. error, line missing; not changed"
+elif [[ $count -eq 1 ]]; then 
+    # see if the value is true or false
+    if [[ $(cat $file | grep "Gtk/PrimaryButtonWarpsSlider 0" | wc -l) -eq 1 ]]; then
+        # value is 0; replace with 1
+        sed -i 's/Gtk\/PrimaryButtonWarpsSlider 0/Gtk\/PrimaryButtonWarpsSlider 1/' $file
+        # log result
+        echo "xsettingsd.conf - value updated"
+        results="${results}\nxsettingsd.conf.............. value updated"
+    elif [[ $(cat $file | grep "Gtk/PrimaryButtonWarpsSlider 1" | wc -l) -eq 1 ]]; then
+        # value is 1 already; do nothing 
+        # log result
+        echo "xsettingsd.conf - already OK - nothing changed"
+        results="${results}\nxsettingsd.conf.............. already done"
+    else
+        # unexpected result
+        # log result
+        echo "xsettingsd.conf - error - unexpected result while assessing state"
+        results="${results}\nxsettingsd.conf.............. error - unexpected result while assessing state"
+    fi
+fi
 
+
+
+# Fifth file
+file="/home/${myuser}/.gtkrc-2.0"
+# What are we doing here? 
+# In the mentioned file, replace: 
+# This string: "gtk-primary-button-warps-slider=0"
+# With this:   "gtk-primary-button-warps-slider=1"
 
 
 
@@ -447,5 +488,5 @@ echo "Sync to Visual Studio Code"
 echo "Sync google accounts in Chrome"
 echo "Does not recognize Code is already installed"
 
-alias gs="git status"
-alias ga="git add ."
+# alias gs="git status"
+# alias ga="git add ."
