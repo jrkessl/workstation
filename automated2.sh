@@ -448,19 +448,45 @@ elif [[ $count -eq 1 ]]; then
         results="${results}\nxsettingsd.conf.............. error - unexpected result while assessing state"
     fi
 fi
-
-
-
 # Fifth file
 file="/home/${myuser}/.gtkrc-2.0"
 # What are we doing here? 
 # In the mentioned file, replace: 
 # This string: "gtk-primary-button-warps-slider=0"
 # With this:   "gtk-primary-button-warps-slider=1"
+count=0
+count=$(cat $file | grep "gtk-primary-button-warps-slider" | wc -l)
+if [[ $count -eq 0 ]]; then
+    # error: line is not in the file (maybe consider adding the line?)
+    # log result
+    echo ".gtkrc-2.0 - error, line missing; not changed"
+    results="${results}\nxsettingsd.conf ............. error, line missing; not changed"
+    results="${results}\n.gtkrc-2.0 .................. error, line missing; not changed"
+    
+elif [[ $count -eq 1 ]]; then 
+    # see if the value is true or false
+    if [[ $(cat $file | grep "gtk-primary-button-warps-slider=0" | wc -l) -eq 1 ]]; then
+        # value is 0; replace with 1
+        sed -i 's/gtk-primary-button-warps-slider=0/gtk-primary-button-warps-slider=1/' $file
+        # log result
+        echo ".gtkrc-2.0 - value updated"
+        results="${results}\n.gtkrc-2.0 .................. value updated"
+    elif [[ $(cat $file | grep "gtk-primary-button-warps-slider=1" | wc -l) -eq 1 ]]; then
+        # value is 1 already; do nothing 
+        # log result
+        echo ".gtkrc-2.0 - already OK - nothing changed"
+        results="${results}\n.gtkrc-2.0 .................. already done"
+    else
+        # unexpected result
+        # log result
+        echo ".gtkrc-2.0 - error - unexpected result while assessing state"
+        results="${results}\n.gtkrc-2.0 .................. error - unexpected result while assessing state"
+    fi
+fi
 
 
 
-==============================================================================
+
 
 
 # file: ~/.config/xsettingsd/xsettingsd.conf
