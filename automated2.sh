@@ -502,48 +502,17 @@ else
     ln -s /home/juliano/googledrive/dinheiro/BairesDev/ViaPath/docs d                                                           || { ((++failed)) ; echo "failed shortcut 2" ; }
     ln -s /home/juliano/Documents/gitlab-viapath/ gl                                                                            || { ((++failed)) ; echo "failed shortcut 3" ; }
     ln -s /home/juliano/Documents/github/ gh                                                                                    || { ((++failed)) ; echo "failed shortcut 4" ; }
-    echo "" >> $file 
-    echo "" >> $file 
-    echo "#custom bashrc configs by Juliano" >> $file
-    echo "" >> $file 
-    echo "" >> $file 
-    echo "file=$file"
-    echo "failed=$failed"
-    echo "export EDITOR=nano" >> $file                                                                                          || { ((++failed)) ; echo "failed alias/env var 5" ; }
-    echo "alias k='kubectl'" >> $file                                                                                           || { ((++failed)) ; echo "failed alias/env var 6" ; }
-    echo "alias switch-qa='aws eks update-kubeconfig --region us-west-2 --name gtl-gvsdevw2-eks-pci-TsF0qrXi'" >> $file         || { ((++failed)) ; echo "failed alias/env var 7" ; }
-    echo "alias switch-rel='aws eks update-kubeconfig --region us-west-2 --name gtl-releasew2-eks-pci-d4Y2nYGc'" >> $file       || { ((++failed)) ; echo "failed alias/env var 8" ; }
-    echo "alias switch-ddev='aws eks update-kubeconfig --region us-east-2 --name gtl-k8s-ddev-eks-5f6ITy0B'" >> $file           || { ((++failed)) ; echo "failed alias/env var 9" ; }
-    echo "alias switch-k8s-dev='aws eks update-kubeconfig --region us-west-2 --name gtl-k8s-dev --role-arn arn:aws:iam::516176675572:role/gtl-k8s-dev-pe-admin-team-access'" >> $file   || { ((++failed)) ; echo "failed alias/env var 10" ; }
-    echo "alias switch-adev='aws eks update-kubeconfig --region us-east-2 --name gtl-k8s-adev-eks-X2vROHJG'" >> $file           || { ((++failed)) ; echo "failed alias/env var 11" ; }
-    echo "alias switch-prod='export AWS_PROFILE=prod8650 && aws eks update-kubeconfig --region us-west-2 --name cmd-cmdusaw2-eks-rFgxDvxP'" >> $file                                    || { ((++failed)) ; echo "failed alias/env var 12" ; }
-    echo "alias tt='history | tail -n 100 | grep'" >> $file                                                                     || { ((++failed)) ; echo "failed alias/env var 13" ; }
-    echo "alias map-googledrive='google-drive-ocamlfuse /home/juliano/googledrive'" >> $file                                    || { ((++failed)) ; echo "failed alias/env var 13.5" ; }
-    echo "export KEYS=/home/juliano/Documents/keys" >> $file                                                                    || { ((++failed)) ; echo "failed alias/env var 14" ; }
-    echo "export PATH=${PATH}:/home/juliano/.local/bin" >> $file                                                                || { ((++failed)) ; echo "failed alias/env var 15" ; }
-    echo "alias gs='git status'" >> $file                                                                                       || { ((++failed)) ; echo "failed alias/env var 16" ; }
-    echo "alias ga='git add .'" >> $file                                                                                        || { ((++failed)) ; echo "failed alias/env var 17" ; }
-    echo "" >> $file 
-    echo "" >> $file 
-    echo "parse_git_branch() {" >> $file                                                                                        || { ((++failed)) ; echo "failed alias/env var 18" ; }
-    echo "     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'" >> $file                                     || { ((++failed)) ; echo "failed alias/env var 19" ; }
-    echo "}" >> $file                                                                                                           || { ((++failed)) ; echo "failed alias/env var 20" ; }
-    echo "" >> $file 
-    echo "" >> $file 
-    echo "case \"$TERM\" in" >> $file                                                                                           || { ((++failed)) ; echo "failed alias/env var 21" ; }
-    echo "    xterm-color|*-256color) color_prompt=yes;;" >> $file                                                              || { ((++failed)) ; echo "failed alias/env var 22" ; }
-    echo "esac" >> $file                                                                                                        || { ((++failed)) ; echo "failed alias/env var 23" ; }
-    echo "if [ \"\$color_prompt\" = yes ]; then" >> $file                                                                       || { ((++failed)) ; echo "failed alias/env var 24" ; }
-    echo "    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@kubuntu\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(parse_git_branch)\[\033[00m\]\$ '" >> $file                   || { ((++failed)) ; echo "failed alias/env var 25" ; }
-    echo "else" >> $file                                                                                                        || { ((++failed)) ; echo "failed alias/env var 26" ; }
-    echo "    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '" >> $file                                                     || { ((++failed)) ; echo "failed alias/env var 27" ; }
-    echo "fi" >> $file                                                                                                          || { ((++failed)) ; echo "failed alias/env var 28" ; }
-    echo "unset color_prompt" >> $file                                                                                          || { ((++failed)) ; echo "failed alias/env var 29" ; }
-    echo "" >> $file 
-    echo "" >> $file 
-    echo "#juliano-bashrc-config-done" >> $file
-    echo ".bashrc - done now"
-    results="${results}\n.bashrc ..................... done now"
+    tee -a $file < ./bashrc-append || { ((++failed)) ; echo "failed tee to $file" ; }
+
+    if [[ $failed -eq 0 ]]; then
+        # all good
+        echo ".bashrc - done now"
+        results="${results}\n.bashrc ..................... done now"
+    else
+        # at least some failed
+        echo ".bashrc - done, but $failed opertations failed. Check log."
+        results="${results}\n.bashrc ..................... done, but $failed opertations failed. Check log."
+    fi
 fi
 
 

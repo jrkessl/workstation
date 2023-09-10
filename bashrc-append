@@ -1,0 +1,31 @@
+
+
+# start of custom bashrc settings by Juliano
+export EDITOR=nano
+alias k='kubectl'
+alias switch-ddev='aws eks update-kubeconfig --region us-east-2 --name gtl-k8s-ddev-eks-5f6ITy0B'
+alias switch-k8s-dev='aws eks update-kubeconfig --region us-west-2 --name gtl-k8s-dev --role-arn arn:aws:iam::516176675572:role/gtl-k8s-dev-pe-admin-team-access'
+alias switch-adev='aws eks update-kubeconfig --region us-east-2 --name gtl-k8s-adev-eks-X2vROHJG'
+alias switch-prod='export AWS_PROFILE=prod8650 && aws eks update-kubeconfig --region us-west-2 --name cmd-cmdusaw2-eks-rFgxDvxP'
+alias tt='history | tail -n 100 | grep'
+export KEYS=/home/juliano/Documents/keys
+export PATH=${PATH}:/home/juliano/.local/bin
+alias gs="git status"
+alias ga="git add ."
+
+# set bash prompt
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@kubuntu\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(parse_git_branch)\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt
+
+#juliano-bashrc-config-done
