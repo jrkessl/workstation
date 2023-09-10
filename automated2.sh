@@ -55,7 +55,6 @@ else
     apt-get update
     apt-get install google-drive-ocamlfuse
     mkdir "/home/${myuser}/googledrive"
-    echo "alias map-googledrive=\"google-drive-ocamlfuse /home/juliano/googledrive\"" >> "/home/${myuser}/.bashrc"
     results="${results}\ngoogle-drive-ocamlfuse....... installed now"
 fi
 # then, as juliano (or whatever user), to mount: $ google-drive-ocamlfuse /home/juliano/googledrive
