@@ -233,7 +233,7 @@ fi
 echo ""
 echo "Step 20 - Visual Studio Code"
 sleep $time
-if [[ $(apt list --installed | grep -E -- "(code/now)|(code/stable)" | wc -l) > 0 ]]; then # Is it already installed?
+if [[ $(apt list --installed | grep -E -- "^(code/now)|(code/stable)" | wc -l) > 0 ]]; then # Is it already installed?
     echo "Visual Studio Code already installed."
     results="${results}\nVisual Studio Code........... already installed"
 else
