@@ -33,7 +33,7 @@ echo ""
 echo "Step 6 - install Chrome"
 sleep $time
 if [[ $(apt list --installed | grep google-chrome-stable | wc -l) > 0 ]]; then # Is chrome already installed?
-    echo "Chrome is already installed. "
+    echo "Chrome is already installed "
     results="${results}\nchrome....................... already installed"
 else
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -83,7 +83,7 @@ if [[ $(cat /home/${myuser}/.nanorc | grep "set linenumbers" | wc -l) = 0 ]]; th
     results="${results}\nnano......................... configured now"
 else
     echo "nano - already configured"
-    results="${results}\nhelm......................... already configured"
+    results="${results}\nnano......................... already configured"
 fi
 
 # docker
