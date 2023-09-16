@@ -537,7 +537,6 @@ echo "add local machine public key to github account"
 echo "configure local git username & email"
 echo "Sync to Visual Studio Code"
 echo "Sync google accounts in Chrome"
-echo "Does not recognize Code is already installed"
 
 # alias gs="git status"
 # alias ga="git add ."
