@@ -565,6 +565,9 @@ Take note of steps that can't/won't be automated:
  - configure local git username & email
  - sync accounts in Visual Studio Code, Google Chrome, Firefox
 
+If you want Cisco company VPN installed, check here: 
+https://github.com/jrkessl/workstation/blob/d953a5b9b940c827582ce404a2aa06e008a18cb7/workstation.sh#L182
+
 Reboot for all settings to take place.
 
 EOF
