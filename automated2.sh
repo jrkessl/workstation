@@ -221,7 +221,7 @@ else
     su juliano -c "./transfuse.sh"
     echo ""
     echo "Done with transfuse."
-    cd $pwd
+    cd $olddir
     echo "KDE configs installed now."
     results="${results}\nKDE configs with transfuse... installed now"
 fi
