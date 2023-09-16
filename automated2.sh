@@ -535,6 +535,21 @@ else
     results="${results}\nAWS emptied credentials...... Already done"
 fi    
 
+echo ""
+echo "Step 27 - ssh key"
+sleep $time
+if [[ ! -e "/home/${myuser}/.ssh/id_rsa" ]]; then # Check if the file does not exist yet 
+    mkdir -p "/home/${myuser}/.ssh"
+    ssh-keygen -N "" -f "/home/${myuser}/.ssh/id_rsa"
+    chown -R ${myuser}:${myuser} "/home/${myuser}/.ssh"
+    chmod -R 700 "/home/${myuser}/.ssh"
+    echo "ssh key created now"
+    results="${results}\nssh key ..................... Done now"
+else    
+    echo "ssh key already done"
+    results="${results}\nssh key ..................... Already done"
+fi    
+
 # now we print the result to standard output, to a file, then end. 
 cat <<EOF | tee /home/juliano/workstation/result.txt
 
