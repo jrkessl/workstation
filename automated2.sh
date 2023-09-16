@@ -541,9 +541,9 @@ cat <<EOF | tee /home/juliano/workstation/result.txt
 Looks like we are done!
 EOF
 
-echo -e ${results} | tee /home/juliano/workstation/result.txt
+echo -e ${results} | tee -a /home/juliano/workstation/result.txt
 
-cat <<EOF | tee /home/juliano/workstation/result.txt
+cat <<EOF | tee -a /home/juliano/workstation/result.txt
 
 Take note of steps that can't/won't be automated:
  - add local machine public key to github/gitlab account
