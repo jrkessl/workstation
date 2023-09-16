@@ -514,31 +514,23 @@ else
     fi
 fi
 
-
-# Status: 
-# a lógica de rodar:
-# comando || ( incremento && echo )
-# não funcionou. aparentemente o incremento não roda.
-# fazer: descobrir uma forma de, falhando o comando, rodar incremento & echo, ou deixar somente o incremento e tirar o echo.
-
-
-# file: ~/.config/xsettingsd/xsettingsd.conf
-# replace: 
-#     -Gtk/PrimaryButtonWarpsSlider 0
-#     +Gtk/PrimaryButtonWarpsSlider 1
-# file: ~/.gtkrc-2.0
-# replace: 
-#     -gtk-primary-button-warps-slider=0
-#     +gtk-primary-button-warps-slider=1
-
-
+echo ""
+echo "Step 26 - AWS credential emptied files"
+sleep $time
+# file="/home/${myuser}/.local/share/kxmlgui5/konsole/sessionui.rc"
+if [[ ! -e "/home/${myuser}/.aws/config" && ! -e "/home/${myuser}/.aws/credentials" ]]; then # Check if the file does not exist yet 
+    cp -r ./.aws /home/${myuser}/
+    echo "AWS emptied credentials copied now"
+    results="${results}\nAWS emptied credentials...... Done now"
+else    
+    echo "AWS emptied credentials already done"
+    results="${results}\nAWS emptied credentials...... Already done"
+fi    
 
 echo -e ${results}
 
 echo ""
 echo "todo:"
-echo "user juliano cannot run docker commands without sudo"
-echo "shortcuts"
 echo ""
 echo "Steps that cannot be automated:"
 echo "add local machine public key to github account"
