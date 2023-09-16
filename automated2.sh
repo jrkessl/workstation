@@ -55,6 +55,8 @@ else
     apt-get update
     apt-get install google-drive-ocamlfuse
     mkdir "/home/${myuser}/googledrive"
+    chown -R ${myuser}:${myuser} "/home/${myuser}/googledrive"
+    chmod -R 700 "/home/${myuser}/googledrive"
     results="${results}\ngoogle-drive-ocamlfuse....... installed now"
 fi
 # then, as juliano (or whatever user), to mount: $ google-drive-ocamlfuse /home/juliano/googledrive
