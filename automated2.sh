@@ -535,17 +535,20 @@ else
     results="${results}\nAWS emptied credentials...... Already done"
 fi    
 
-echo ""
-echo "Looks like we are done!"
-echo ""
-echo -e ${results}
-echo ""
-echo "Take note of steps that can't/won't be automated:"
-echo " - add local machine public key to github/gitlab account"
-echo " - configure local git username & email"
-echo " - sync accounts in Visual Studio Code, Google Chrome, Firefox"
-echo ""
-echo "Reboot for all settings to take place."
+# now we print the result to standard output, to a file, then end. 
+cat <<EOF | tee /home/juliano/workstation/result.txt
+
+Looks like we are done!
+
+${results}
+
+Take note of steps that can't/won't be automated:
+ - add local machine public key to github/gitlab account
+ - configure local git username & email
+ - sync accounts in Visual Studio Code, Google Chrome, Firefox
+
+Reboot for all settings to take place.
+EOF
 
 # alias gs="git status"
 # alias ga="git add ."
