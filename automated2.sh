@@ -533,16 +533,17 @@ else
     results="${results}\nAWS emptied credentials...... Already done"
 fi    
 
+echo ""
+echo "Looks like we are done!"
+echo ""
 echo -e ${results}
-
 echo ""
-echo "todo:"
+echo "Take note of steps that can't/won't be automated:"
+echo " - add local machine public key to github/gitlab account"
+echo " - configure local git username & email"
+echo " - sync accounts in Visual Studio Code, Google Chrome, Firefox"
 echo ""
-echo "Steps that cannot be automated:"
-echo "add local machine public key to github account"
-echo "configure local git username & email"
-echo "Sync to Visual Studio Code"
-echo "Sync google accounts in Chrome"
+echo "Reboot for all settings to take place."
 
 # alias gs="git status"
 # alias ga="git add ."
