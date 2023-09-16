@@ -518,7 +518,11 @@ echo ""
 echo "Step 26 - AWS credential emptied files"
 sleep $time
 # file="/home/${myuser}/.local/share/kxmlgui5/konsole/sessionui.rc"
+echo "pwd = $(pwd)"
 if [[ ! -e "/home/${myuser}/.aws/config" && ! -e "/home/${myuser}/.aws/credentials" ]]; then # Check if the file does not exist yet 
+    if [[ $(pwd) != "/home/juliano/workstation" ]]; then
+        echo "whoops! we are not in the right folder"
+    fi
     cp -r ./.aws /home/${myuser}/
     echo "AWS emptied credentials copied now"
     results="${results}\nAWS emptied credentials...... Done now"
