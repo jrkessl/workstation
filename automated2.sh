@@ -500,9 +500,9 @@ else
     # not yet done. So let's do it now
     failed=0
     ln -s /home/juliano/googledrive/dinheiro/BairesDev/ViaPath/docs /home/juliano/Documents/docs                                || { ((++failed)) ; echo "failed shortcut 1" ; }
-    ln -s /home/juliano/googledrive/dinheiro/BairesDev/ViaPath/docs d                                                           || { ((++failed)) ; echo "failed shortcut 2" ; }
-    ln -s /home/juliano/Documents/gitlab-viapath/ gl                                                                            || { ((++failed)) ; echo "failed shortcut 3" ; }
-    ln -s /home/juliano/Documents/github/ gh                                                                                    || { ((++failed)) ; echo "failed shortcut 4" ; }
+    ln -s /home/juliano/googledrive/dinheiro/BairesDev/ViaPath/docs /home/juliano/d                                             || { ((++failed)) ; echo "failed shortcut 2" ; }
+    ln -s /home/juliano/Documents/gitlab-viapath/ /home/juliano/gl                                                              || { ((++failed)) ; echo "failed shortcut 3" ; }
+    ln -s /home/juliano/Documents/github/ /home/juliano/gh                                                                      || { ((++failed)) ; echo "failed shortcut 4" ; }
     tee -a $file < ./bashrc-append || { ((++failed)) ; echo "failed tee to $file" ; }
 
     if [[ $failed -eq 0 ]]; then
