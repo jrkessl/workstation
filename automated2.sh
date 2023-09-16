@@ -524,6 +524,8 @@ if [[ ! -e "/home/${myuser}/.aws/config" && ! -e "/home/${myuser}/.aws/credentia
         echo "whoops! we are not in the right folder"
     fi
     cp -r ./.aws /home/${myuser}/
+    chown -R ${myuser}:${myuser} ./.aws
+    chmod -R 700 ./.aws
     echo "AWS emptied credentials copied now"
     results="${results}\nAWS emptied credentials...... Done now"
 else    
