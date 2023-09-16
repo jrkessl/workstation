@@ -539,8 +539,11 @@ fi
 cat <<EOF | tee /home/juliano/workstation/result.txt
 
 Looks like we are done!
+EOF
 
-${results}
+echo -e ${results} | tee /home/juliano/workstation/result.txt
+
+cat <<EOF | tee /home/juliano/workstation/result.txt
 
 Take note of steps that can't/won't be automated:
  - add local machine public key to github/gitlab account
@@ -548,7 +551,9 @@ Take note of steps that can't/won't be automated:
  - sync accounts in Visual Studio Code, Google Chrome, Firefox
 
 Reboot for all settings to take place.
+
 EOF
+
 
 # alias gs="git status"
 # alias ga="git add ."
