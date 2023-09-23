@@ -1,11 +1,11 @@
 # Workstation
 
-This is my personal workstation configurator. Often I have to reinstall my Linux machine for several reasons. And this automates (almost) all the stuff I need. From a fresh Ubuntu installation (it may work with other distros as well) I install the software and make the configurations I became reliant on. 
+This is my personal workstation configurator. Often I have to reinstall my Linux machine for several reasons. And this automates (almost) all the stuff I need. From a fresh Ubuntu installation I install the software and make the configurations I became reliant on. It may work with other distros as well, as long as they have apt.
 ## What it does
-Installs KDE
-Applies my prefered configs for KDE, including keyboard layout and window management preferences
-Installs a bunch of software using apt, and some by downloading and running installers
-Applies my prefered configurations for nano, creates my bash sortcuts, aliases and bash prompt config. 
+ - Installs KDE
+ - Applies my prefered configs for KDE, including keyboard layout and window management preferences
+ - Installs a bunch of software using apt, and some by downloading and running installers
+ - Applies my prefered configurations for nano, creates my bash sortcuts, aliases and bash prompt config. 
 ## How to use it
  - In a fresh Ubuntu installation, install git and 'git clone' the project. 
  - Run automated.sh as root (it will remind you if you are not root).
