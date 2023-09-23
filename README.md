@@ -5,7 +5,8 @@ This is my personal workstation configurator. Often I have to reinstall my Linux
  - Installs KDE
  - Applies my prefered configs for KDE, including keyboard layout and window management preferences
  - Installs a bunch of software using apt, and some by downloading and running installers
- - Applies my prefered configurations for nano, creates my bash sortcuts, aliases and bash prompt config. 
+ - Applies my prefered terminal configurations, like Konsole UI settings, bash shortcuts, bash prompt and aliases.
+ - Applies some user settings, adds my user to sudoers, creates my ssh key, among others.
 ## How to use it
  - In a fresh Ubuntu installation, install git and 'git clone' the project. 
  - Run automated.sh as root (it will remind you if you are not root).
