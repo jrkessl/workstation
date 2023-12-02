@@ -572,6 +572,8 @@ Reboot for all settings to take place.
 
 EOF
 
+# consider:
+# adding "git recentb" command. Source: https://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
 
 # alias gs="git status"
 # alias ga="git add ."
