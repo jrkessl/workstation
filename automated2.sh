@@ -575,5 +575,8 @@ EOF
 # consider:
 # adding "git recentb" command. Source: https://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
 
+# consider: 
+# installing piper and configuring ctrl + page up, ctrl + page down for the side buttons.
+
 # alias gs="git status"
 # alias ga="git add ."
