@@ -578,5 +578,8 @@ EOF
 # consider: 
 # installing piper and configuring ctrl + page up, ctrl + page down for the side buttons.
 
+# consider:
+# enabling numlock on in boot in plasma keyboard configurations.
+
 # alias gs="git status"
 # alias ga="git add ."
