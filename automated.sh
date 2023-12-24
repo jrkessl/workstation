@@ -21,14 +21,8 @@ sleep $time
 # Note: KDE will ask for the default graphics provider. Select sddm. Consider automating this.
 # DEBIAN_FRONTEND=noninteractive This does not do any good. 
 if [[ $(apt list --installed | grep kde-plasma-desktop | wc -l) > 0 ]]; then # If KDE plasma is already installed
-    echo "KDE is already installed. Proceeding to file 'automated2.sh'."
+    echo "KDE is already installed."
     results="KDE.......................... already installed"
-    # Triggering file 'automated2.sh'
-    if [[ ! -e "$(pwd)/automated2.sh" ]]; then
-        echo "Error: script file 'automated2.sh' not found in current directory. It was going to be triggered now. Please fix this script or trigger 'automated2.sh' manually."
-        echo "Exitting..."
-        exit 1
-    fi
 else
     apt-get install kde-full -y
     echo "Installed KDE. Now please reboot and run this script again."
@@ -234,15 +228,21 @@ fi
 echo ""
 echo "Step 19 - KDE configs with transfuse"
 sleep $time
-if [[ -e "/home/${myuser}/transfuse" ]]; then # Check if transfuse project is already here
+if [[ -e "./transfuse" ]]; then # Check if transfuse project is already here
     echo "KDE configs skipped."
     results="${results}\nKDE configs with transfuse... already installed"
 else
-    olddir=$(pwd)
-    cd /home/${myuser}/
     git clone https://gitlab.com/cscs/transfuse.git
-    cp workstation/${transfuse_backup} transfuse/
-    cd transfuse
+    cp ./${transfuse_backup} ./transfuse/ || transfuse_error=1
+    if [[ $transfuse_error == 1 ]]; then 
+        echo ""
+        echo ""
+        echo "Error in step 19. Failed command 'cp workstation/${transfuse_backup} transfuse/'."
+        echo "pwd="
+        pwd
+        exit 1
+    fi 
+    cd ./transfuse
     echo ""
     echo "***********************************"
     echo "***** Attention! Please read. *****"
