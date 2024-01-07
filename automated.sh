@@ -468,8 +468,10 @@ elif [[ $count -eq 1 ]]; then
 fi
 
 echo ""
-echo "Step 25 - Bash shortcuts, alias and other .bashrc items"
+echo "Step 25 - Bash shortcuts, alias and other .bashrc items, and folders"
 sleep $time
+mkdir -p /home/${myuser}/Documents/github/
+mkdir -p /home/${myuser}/Documents/gitlab-viapath/
 # changing first file
 # here, in file $file, we find 'gtk-primary-button-warps-slider=false' and replace the 'false' with 'true'.
 file="/home/${myuser}/.bashrc"
@@ -548,14 +550,12 @@ EOF
 echo ""
 echo "Read the summary of this run in file ${results_file}."
 
-# consider:
-# adding "git recentb" command. Source: https://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
+# consider: adding "git recentb" command. Source: https://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
+# consider: installing piper and configuring ctrl + page up, ctrl + page down for the side buttons.
+# consider: enabling numlock on in boot in plasma keyboard configurations.
 
-# consider: 
-# installing piper and configuring ctrl + page up, ctrl + page down for the side buttons.
-
-# consider:
-# enabling numlock on in boot in plasma keyboard configurations.
+# 2024-01-07: looks like konsole copy paste shortcuts are no longer working. 
+# 2024-01-07 consider: reducing mouse sensitivity in KDE to level 4.
 
 # alias gs="git status"
 # alias ga="git add ."
