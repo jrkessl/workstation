@@ -31,33 +31,13 @@ else
     exit 0 
 fi
 
-# jq
+# Everything with apt 
 echo ""
-echo "Step 2 - install jq"
+echo "Step 2 - install everything with apt"
 sleep $time
-sudo apt install jq -y
-echo "jq........................... installed or reinstalled with apt" | tee -a $results_file
-
-# curl
-echo ""
-echo "Step 3 - install curl"
-sleep $time
-sudo apt install curl -y
-echo "curl......................... installed or reinstalled with apt" | tee -a $results_file
-
-# filezilla
-echo ""
-echo "Step 4 - install filezilla"
-sleep $time
-sudo apt-get install filezilla -y
-echo "filezilla.................... installed or reinstalled with apt" | tee -a $results_file
-
-# keepassxc
-echo ""
-echo "Step 5 - install keepassxc"
-sleep $time
-sudo apt-get install keepassxc -y
-echo "keepassxc.................... installed or reinstalled with apt" | tee -a $results_file
+sudo apt install jq vagrant curl filezilla keepassxc nmap postgresql-client-14 mysql-client-8.0 tree docker.io virtualbox -y
+gpasswd -a ${myuser} docker
+echo "Everything with apt ..........installed or reinstalled now" | tee -a $results_file
 
 echo ""
 echo "Step 6 - install Chrome"
@@ -111,39 +91,6 @@ if [[ $(cat /home/${myuser}/.nanorc | grep "set linenumbers" | wc -l) = 0 ]]; th
 else
     echo "Nano......................... already configured" | tee -a $results_file
 fi
-
-# docker
-echo ""
-echo "Step 10 - install docker"
-sleep $time
-apt install docker.io -y
-echo "Docker....................... installed or reinstalled with apt" | tee -a $results_file
-gpasswd -a ${myuser} docker
-
-# nmap
-echo ""
-echo "Step 11 - install nmap"
-sleep $time
-sudo apt install nmap -y
-echo "Nmap......................... installed or reinstalled with apt" | tee -a $results_file
-
-echo ""
-echo "Step 12 - install postgres client"
-sleep $time
-sudo apt install postgresql-client-14 -y
-echo "Postgresql-client-14......... installed or reinstalled with apt" | tee -a $results_file
-
-echo ""
-echo "Step 13 - install mysql-client-8.0"
-sleep $time
-sudo apt install mysql-client-8.0 -y
-echo "Mysql-client-8.0............. installed or reinstalled with apt" | tee -a $results_file
-
-echo ""
-echo "Step 14 - install tree"
-sleep $time
-sudo apt install tree -y
-echo "Tree......................... installed or reinstalled with apt" | tee -a $results_file
 
 # terraform
 echo ""
