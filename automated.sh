@@ -93,6 +93,7 @@ echo ""
 echo "Step 8 - install helm (latest)"
 sleep $time
 if [[ ! -e "/usr/local/bin/helm" ]]; then # Check if helm binary does not exist
+    mkdir -p /usr/local/bin
     curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
     echo "Helm......................... installed now" | tee -a $results_file
 else
@@ -500,9 +501,9 @@ sleep $time
 # file="/home/${myuser}/.local/share/kxmlgui5/konsole/sessionui.rc"
 echo "pwd = $(pwd)"
 if [[ ! -e "/home/${myuser}/.aws/config" && ! -e "/home/${myuser}/.aws/credentials" ]]; then # Check if the file does not exist yet 
-    if [[ $(pwd) != "/home/juliano/workstation" ]]; then
-        echo "whoops! we are not in the right folder"
-    fi
+    #if [[ $(pwd) != "/home/juliano/workstation" ]]; then
+    #    echo "whoops! we are not in the right folder"
+    #fi
     cp -r ./.aws /home/${myuser}/
     chown -R ${myuser}:${myuser} ./.aws
     chmod -R 700 ./.aws
