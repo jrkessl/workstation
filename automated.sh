@@ -503,6 +503,9 @@ echo "Read the summary of this run in file ${results_file}."
 
 # 2024-01-07: looks like konsole copy paste shortcuts are no longer working. 
 # 2024-01-07 consider: reducing mouse sensitivity in KDE to level 4.
+# 2024-01-07 consider: "configure icons-only task manager" > behavior > group > by program name. 
+# 2024-01-09 consider: KDE Settings > Notifications > Popup > Choose custom position > lower right corner. 
+
 
 # alias gs="git status"
 # alias ga="git add ."
