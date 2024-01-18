@@ -14,7 +14,7 @@ export KEYS=/home/juliano/Documents/keys
 export PATH=${PATH}:/home/juliano/.local/bin
 alias gs="git status"
 alias ga="git add ."
-export skip="--push-option=ci.skip"
+alias gps="git push --push-option=ci.skip"
 
 # set bash prompt
 parse_git_branch() {
