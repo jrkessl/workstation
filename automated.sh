@@ -128,12 +128,12 @@ else
 fi
 
 echo ""
-echo "Step 17 - kubectl (1.23)"
+echo "Step 17 - kubectl (1.29)"
 sleep $time
 if [[ -e "/usr/bin/kubectl" ]]; then # Check if the application binary exists
     echo "Kubectl...................... already installed" | tee -a $results_file
 else
-    curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.23.15/2023-01-11/bin/linux/amd64/kubectl
+    curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.29.0/2024-01-04/bin/linux/amd64/kubectl
     mv kubectl /usr/bin/
     chmod +x /usr/bin/kubectl
     echo "Kubectl...................... installed now" | tee -a $results_file
