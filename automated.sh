@@ -21,6 +21,7 @@ fi
 echo ""
 echo "Step 2 - install everything with apt"
 sleep $time
+sudo apt-get update
 sudo apt install jq curl nmap postgresql-client-14 mysql-client-8.0 tree docker.io -y
 gpasswd -a ${myuser} docker
 echo "Everything with apt ..........installed or reinstalled now" | tee -a $results_file
