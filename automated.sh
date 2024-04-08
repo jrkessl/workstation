@@ -17,56 +17,13 @@ if [[ $current_user != "root" ]]; then
     exit 1
 fi
 
-# Install KDE
-echo ""
-echo "Step 1 - install KDE"
-sleep $time
-# Note: KDE will ask for the default graphics provider. Select sddm. Consider automating this.
-# DEBIAN_FRONTEND=noninteractive This does not do any good. 
-if [[ $(apt list --installed | grep kde-plasma-desktop | wc -l) > 0 ]]; then # If KDE plasma is already installed
-    echo "KDE.......................... already installed" | tee -a $results_file
-else
-    apt-get install kde-full -y
-    echo "Installed KDE. Now please reboot and run this script again." | tee -a $results_file
-    exit 0 
-fi
-
 # Everything with apt 
 echo ""
 echo "Step 2 - install everything with apt"
 sleep $time
-sudo apt install jq vagrant curl filezilla keepassxc nmap postgresql-client-14 mysql-client-8.0 tree docker.io virtualbox -y
+sudo apt install jq curl nmap postgresql-client-14 mysql-client-8.0 tree docker.io -y
 gpasswd -a ${myuser} docker
 echo "Everything with apt ..........installed or reinstalled now" | tee -a $results_file
-
-echo ""
-echo "Step 6 - install Chrome"
-sleep $time
-if [[ $(apt list --installed | grep google-chrome-stable | wc -l) > 0 ]]; then # Is chrome already installed?
-    echo "Chrome....................... already installed" | tee -a $results_file
-else
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    sudo dpkg -i google-chrome-stable_current_amd64.deb
-    rm google-chrome-stable_current_amd64.deb
-    echo "Chrome....................... installed now" | tee -a $results_file
-fi
-
-# google-drive-ocamlfuse
-echo ""
-echo "Step 7 - install google-drive-ocamlfuse"
-sleep $time
-if [[ $(apt list --installed | grep google-drive-ocamlfuse | wc -l) > 0 ]]; then # Is it already installed?
-    echo "google-drive-ocamlfuse....... already installed" | tee -a $results_file
-else
-    add-apt-repository ppa:alessandro-strada/ppa -y
-    apt-get update
-    apt-get install google-drive-ocamlfuse
-    mkdir "/home/${myuser}/googledrive"
-    chown -R ${myuser}:${myuser} "/home/${myuser}/googledrive"
-    chmod -R 700 "/home/${myuser}/googledrive"
-    echo "google-drive-ocamlfuse....... installed now" | tee -a $results_file
-fi
-# then, as juliano (or whatever user), to mount: $ google-drive-ocamlfuse /home/juliano/googledrive
 
 # helm 3
 echo ""
@@ -83,7 +40,7 @@ fi
 # Fix up nano
 echo ""
 echo "Step 9 - fix up nano"
-if [[ $(cat /home/${myuser}/.nanorc | grep "set linenumbers" | wc -l) = 0 ]]; then
+if [[ $(cat /home/${myuser}/.nanorc | grep "set linenumbers" | wc -l) == 0 ]]; then
     echo "set linenumbers" > /home/${myuser}/.nanorc
     chown juliano:juliano /home/juliano/.nanorc
     chmod 744 /home/juliano/.nanorc
@@ -140,67 +97,6 @@ else
 fi
 
 echo ""
-echo "Step 18 - install lens"
-sleep $time
-if [[ $(apt list --installed | grep lens | wc -l) > 0 ]]; then # Is it already installed?
-    echo "Lens......................... already installed" | tee -a $results_file
-else
-    curl -fsSL https://downloads.k8slens.dev/keys/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/lens-archive-keyring.gpg > /dev/null
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/lens-archive-keyring.gpg] https://downloads.k8slens.dev/apt/debian stable main" | tee /etc/apt/sources.list.d/lens.list > /dev/null
-    apt update
-    apt install lens -y
-    echo "Lens......................... installed now" | tee -a $results_file
-fi
-
-echo ""
-echo "Step 19 - KDE configs with transfuse"
-sleep $time
-if [[ -e "./transfuse" ]]; then # Check if transfuse project is already here
-    echo "KDE configs with transfuse... already installed" | tee -a $results_file
-else
-    git clone https://gitlab.com/cscs/transfuse.git
-    cp ./${transfuse_backup} ./transfuse/ || transfuse_error=1
-    if [[ $transfuse_error == 1 ]]; then 
-        echo ""
-        echo ""
-        echo "Error in step 19. Failed command 'cp workstation/${transfuse_backup} transfuse/'." | tee -a $results_file
-        echo "pwd=" | tee -a $results_file
-        pwd | tee -a $results_file
-        exit 1
-    fi 
-    cd ./transfuse
-    echo ""
-    echo "***********************************" | tee -a $results_file
-    echo "***** Attention! Please read. *****" | tee -a $results_file
-    echo "***********************************" | tee -a $results_file
-    echo "Running transfuse." | tee -a $results_file
-    echo "Choose the Restore option;" | tee -a $results_file
-    echo "Type username '${myuser}'" | tee -a $results_file
-    echo "Choose the backup file, that will be sugested." | tee -a $results_file
-    echo "Or choose to quit and do nothing." | tee -a $results_file
-    echo "If you see error 'Application plasmashell could not be found...' reboot the workstation and the updated configs will be there." | tee -a $results_file
-    echo ""
-    su juliano -c "./transfuse.sh"
-    echo ""
-    echo "Done with transfuse." | tee -a $results_file
-    cd $olddir
-    echo "KDE configs with transfuse... installed now" | tee -a $results_file
-fi
-# also consider: Plasma Customization Server ; https://store.kde.org/p/1298955/
-# also consider: https://github.com/Prayag2/konsave
-
-echo ""
-echo "Step 20 - Visual Studio Code"
-sleep $time
-if [[ $(apt list --installed | grep -E -- "^(code/now)|(code/stable)" | wc -l) > 0 ]]; then # Is it already installed?
-    echo "Visual Studio Code........... already installed" | tee -a $results_file
-else
-    curl https://az764295.vo.msecnd.net/stable/6c3e3dba23e8fadc360aed75ce363ba185c49794/code_1.81.1-1691620686_amd64.deb -o /tmp/code_1.81.1-1691620686_amd64.deb
-    apt install /tmp/code_1.81.1-1691620686_amd64.deb
-    echo "Visual Studio Code........... installed now" | tee -a $results_file
-fi
-
-echo ""
 echo "Step 21 - add ${myuser} to sudoers"
 sleep $time
 if [[ -e "/etc/sudoers.d/${myuser}" ]]; then # Check if sudoers file already exist
@@ -208,210 +104,6 @@ if [[ -e "/etc/sudoers.d/${myuser}" ]]; then # Check if sudoers file already exi
 else
     echo "${myuser}  ALL=(ALL) NOPASSWD:ALL" | tee -a /etc/sudoers.d/${myuser}
     echo "Add ${myuser} to sudoers....... done now" | tee -a $results_file
-fi
-
-echo ""
-echo "Step 22 - setup portuguese keyboard layout"
-sleep $time
-if [[ ! -e "/home/${myuser}/.config/kxkbrc" ]]; then # Check if the file in which the keyboard layout it set exists
-    echo "Error: looks like file /home/${myuser}/.config/kxkbrc does not exist." | tee -a $results_file
-    # log results
-    echo "Setup keyboard language...... skipped, file missing" | tee -a $results_file
-else
-    # if the file exists, we do it. 
-    if [[ $(cat /home/${myuser}/.config/kxkbrc | grep LayoutList=br | wc -l) > 0 ]]; then
-        echo "Looks like file /home/${myuser}/.config/kxkbrc already has the keyboard configuration. Skipping."
-        # log results
-        echo "Setup keyboard language...... already done" | tee -a $results_file
-    else
-        echo "Adding keyboard language layout config to file /home/${myuser}/.config/kxkbrc ..."
-        echo "" | tee -a /home/${myuser}/.config/kxkbrc
-        echo "[Layout]" | tee -a /home/${myuser}/.config/kxkbrc
-        echo "LayoutList=br" | tee -a /home/${myuser}/.config/kxkbrc
-        echo "Use=true" | tee -a /home/${myuser}/.config/kxkbrc
-        # log results
-        echo "Setup keyboard language...... done now" | tee -a $results_file
-    fi
-fi
-
-echo ""
-echo "Step 23 - konsole keyboard shortcuts"
-sleep $time
-file="/home/${myuser}/.local/share/kxmlgui5/konsole/sessionui.rc"
-if [[ ! -e "$file"  ]]; then # Check if the konsole config file in which shortcuts go exists; looks like it does not get created until konsole is first opened, or maybe first configured. 
-    error=0
-    cp ./sessionui.rc "/home/${myuser}/.local/share/kxmlgui5/konsole/" || error=1
-    if [[ $error -eq 1 ]]; then
-        # for some reason, could not save copy file sessionui.rc to its destination
-        # log results
-        echo "Konsole keyboard shortcuts... Error, could not copy into $file" | tee -a $results_file
-    else
-        # success
-        # log results
-        echo "Konsole keyboard shortcuts... done now" | tee -a $results_file
-    fi
-else
-    # file already exists. Skipping.
-    # log results
-    echo "Konsole keyboard shortcuts... skipping, file exists" | tee -a $results_file
-fi
-
-echo ""
-echo "Step 24 - Systems settings - workspace behavior"
-sleep $time
-# changing first file
-# here, in file $file, we find 'gtk-primary-button-warps-slider=false' and replace the 'false' with 'true'.
-file="/home/${myuser}/.config/gtk-3.0/settings.ini"
-count=0
-count=$(cat $file | grep gtk-primary-button-warps-slider | wc -l)
-if [[ $count -eq 0 ]]; then
-    # error: line is not in the file (maybe consider adding the line?)
-    # log result
-    echo "settings.ini ................ error, line missing; not changed" | tee -a $results_file
-elif [[ $count -eq 1 ]]; then 
-    # see if the value is true or false
-    if [[ $(cat $file | grep gtk-primary-button-warps-slider=false | wc -l) -eq 1 ]]; then
-        # value is false; replace with true
-        sed -i 's/gtk-primary-button-warps-slider=false/gtk-primary-button-warps-slider=true/' $file
-        # log result
-        echo "settings.ini ................ value updated" | tee -a $results_file
-    elif [[ $(cat $file | grep gtk-primary-button-warps-slider=true | wc -l) -eq 1 ]]; then
-        # value is true already; do nothing 
-        # log result
-        echo "settings.ini ................ already done" | tee -a $results_file
-    else
-        # unexpected result
-        # log result
-        echo "settings.ini ................ error - unexpected result while assessing state" | tee -a $results_file
-    fi
-fi
-# changing second file 
-# here, in file $file, we find 'gtk-primary-button-warps-slider=false' and replace the 'false' with 'true'.
-file="/home/${myuser}/.config/gtk-4.0/settings.ini"
-count=0
-count=$(cat $file | grep gtk-primary-button-warps-slider | wc -l)
-if [[ $count -eq 0 ]]; then
-    # error: line is not in the file (maybe consider adding the line?)
-    # log result
-    echo "settings.ini ................ error, line missing; not changed" | tee -a $results_file
-elif [[ $count -eq 1 ]]; then 
-    # see if the value is true or false
-    if [[ $(cat $file | grep gtk-primary-button-warps-slider=false | wc -l) -eq 1 ]]; then
-        # value is false; replace with true
-        sed -i 's/gtk-primary-button-warps-slider=false/gtk-primary-button-warps-slider=true/' $file
-        # log result
-        echo "settings.ini ................ value updated" | tee -a $results_file
-    elif [[ $(cat $file | grep gtk-primary-button-warps-slider=true | wc -l) -eq 1 ]]; then
-        # value is true already; do nothing 
-        # log result
-        echo "settings.ini ................ already done" | tee -a $results_file
-    else
-        # unexpected result
-        # log result
-        echo "settings.ini ................ error - unexpected result while assessing state" | tee -a $results_file
-    fi
-fi
-# changing third file
-# here, if we have string "LookAndFeelPackage=org.kde.breezedark.desktop" in file "~/.config/kdeglobals" we put, under it, these lines:
-# "ScrollbarLeftClickNavigatesByPage=false
-# SingleClick=false"
-# So let's do it. 
-file="/home/${myuser}/.config/kdeglobals"
-positionstring="LookAndFeelPackage=org.kde.breezedark.desktop"
-# 1) First we see if the value even is in the file. 
-if [[ $(cat $file  | grep ${positionstring} | wc -l ) -eq 0 ]]; then
-    echo "Unexpected condition updating file ${file}: position string not found"
-    # save results
-    echo "kdeglobals .................. skipped - unexpected condition, positional string not found in file ${file}" | tee -a $results_file
-else
-    # 3) Then we see if we didn't do it already. 
-    already1=$(cat $file | grep ScrollbarLeftClickNavigatesByPage | wc -l)
-    already2=$(cat $file | grep SingleClick | wc -l)
-    if [[ $already1 -gt 0 || $already2 -gt 0 ]]; then
-        # Looks like the values are there already. They could be true. But we were expecting the values to not be there at all. 
-        # save results
-        echo "kdeglobals .................. skipped - values are already present (but they could be true)" | tee -a $results_file
-    else
-        # Then we add the line, by splitting the file in two, then gluing the first bit, then the line, then the second bit.
-        # 2) Cut the first bit of the file. 
-        tempfile=$(mktemp) # create temp file 
-        position=$(awk "/${positionstring}/{ print NR; exit }" $file) # find where the positional string is 
-        head $file -n $position > $tempfile # cut file 
-        # 3) Cut the rest of the file. 
-        totalsize=$(cat $file | wc -l) # get total size of file 
-        rest=$((totalsize-position))
-        tempfile2=$(mktemp)
-        tail $file -n $rest > $tempfile2
-        # 4) Glue the final product 
-        cp $file /tmp/kdeglobals-backup # save backup first 
-        tempfile4=$(mktemp) # create temp file
-        cp $tempfile $tempfile4 # Add the first half 
-        echo "ScrollbarLeftClickNavigatesByPage=false" >> $tempfile4 # Add the lines we want 
-        echo "SingleClick=false" >> $tempfile4
-        cat $tempfile2 >> $tempfile4 # Add the second half 
-        cp $tempfile4 $file # Save the glued file where is has to be. 
-        # save results
-        echo "kdeglobals .................. updated now" | tee -a $results_file
-    fi
-fi
-# Changing fourth file
-file="/home/${myuser}/.config/xsettingsd/xsettingsd.conf"
-# What are we doing here? 
-# In the mentioned file, replace: 
-# This string: "Gtk/PrimaryButtonWarpsSlider 0"
-# With this:   "Gtk/PrimaryButtonWarpsSlider 1"
-count=0
-count=$(cat $file | grep "Gtk/PrimaryButtonWarpsSlider" | wc -l)
-if [[ $count -eq 0 ]]; then
-    # error: line is not in the file (maybe consider adding the line?)
-    # log result
-    echo "xsettingsd.conf ............. error, line missing; not changed" | tee -a $results_file
-elif [[ $count -eq 1 ]]; then 
-    # see if the value is true or false
-    if [[ $(cat $file | grep "Gtk/PrimaryButtonWarpsSlider 0" | wc -l) -eq 1 ]]; then
-        # value is 0; replace with 1
-        sed -i 's/Gtk\/PrimaryButtonWarpsSlider 0/Gtk\/PrimaryButtonWarpsSlider 1/' $file
-        # log result
-        echo "xsettingsd.conf.............. value updated" | tee -a $results_file
-    elif [[ $(cat $file | grep "Gtk/PrimaryButtonWarpsSlider 1" | wc -l) -eq 1 ]]; then
-        # value is 1 already; do nothing 
-        # log result
-        echo "xsettingsd.conf.............. already done" | tee -a $results_file
-    else
-        # unexpected result
-        # log result
-        echo "xsettingsd.conf.............. error - unexpected result while assessing state" | tee -a $results_file
-    fi
-fi
-# Fifth file
-file="/home/${myuser}/.gtkrc-2.0"
-# What are we doing here? 
-# In the mentioned file, replace: 
-# This string: "gtk-primary-button-warps-slider=0"
-# With this:   "gtk-primary-button-warps-slider=1"
-count=0
-count=$(cat $file | grep "gtk-primary-button-warps-slider" | wc -l)
-if [[ $count -eq 0 ]]; then
-    # error: line is not in the file (maybe consider adding the line?)
-    # log result
-    echo ".gtkrc-2.0 .................. error, line missing; not changed" | tee -a $results_file
-    
-elif [[ $count -eq 1 ]]; then 
-    # see if the value is true or false
-    if [[ $(cat $file | grep "gtk-primary-button-warps-slider=0" | wc -l) -eq 1 ]]; then
-        # value is 0; replace with 1
-        sed -i 's/gtk-primary-button-warps-slider=0/gtk-primary-button-warps-slider=1/' $file
-        # log result
-        echo ".gtkrc-2.0 .................. value updated" | tee -a $results_file
-    elif [[ $(cat $file | grep "gtk-primary-button-warps-slider=1" | wc -l) -eq 1 ]]; then
-        # value is 1 already; do nothing 
-        # log result
-        echo ".gtkrc-2.0 .................. already done" | tee -a $results_file
-    else
-        # unexpected result
-        # log result
-        echo ".gtkrc-2.0 .................. error - unexpected result while assessing state" | tee -a $results_file
-    fi
 fi
 
 echo ""
