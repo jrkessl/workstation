@@ -505,8 +505,18 @@ echo "Read the summary of this run in file ${results_file}."
 # 2024-01-07 consider: reducing mouse sensitivity in KDE to level 4.
 # 2024-01-07 consider: "configure icons-only task manager" > behavior > group > by program name. 
 # 2024-01-09 consider: KDE Settings > Notifications > Popup > Choose custom position > lower right corner. 
-
+# 2024-04-29 fix: ~/github directory is owned by root, must be owned by the user (and most likely the gitlab dir as well)
+# 2024-04-29 fix: dark mode did not get enabled.
+# 2024-04-29 fix: that error (.aws directory does not exist) or something like that, persists. Seems like it exists only in the first run. 
 
 # alias gs="git status"
 # alias ga="git add ."
 
+
+
+cp /home/juliano/googledrive/dinheiro/BairesDev/ViaPath/cisco-anyconnect/anyconnect-linux64-4.10.04071-predeploy-k9.tar.gz /tmp
+cd /tmp
+tar -xzvf anyconnect-linux64-4.10.04071-predeploy-k9.tar.gz
+cd anyconnect-linux64-4.10.04071/
+cd vpn
+sudo ./vpn_install.sh
