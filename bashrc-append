@@ -9,7 +9,7 @@ alias switch-adev='aws eks update-kubeconfig --region us-east-2 --name gtl-k8s-a
 alias switch-prod='export AWS_PROFILE=prod8650 && aws eks update-kubeconfig --region us-west-2 --name cmd-cmdusaw2-eks-rFgxDvxP'
 alias switch-k8cmd="export AWS_PROFILE=sec-ple && aws eks --region us-west-2 update-kubeconfig --name k8cmd"
 alias tt='history | tail -n 100 | grep'
-alias map-googledrive='google-drive-ocamlfuse /home/juliano/googledrive'
+alias map-googledrive='google-drive-ocamlfuse /home/juliano/googledrive -id <id> -secret <secret>'
 export KEYS=/home/juliano/Documents/keys
 export PATH=${PATH}:/home/juliano/.local/bin
 alias gs="git status"
