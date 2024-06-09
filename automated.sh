@@ -514,9 +514,15 @@ echo "Read the summary of this run in file ${results_file}."
 
 
 
+# old vpn: 
 cp /home/juliano/googledrive/dinheiro/BairesDev/ViaPath/cisco-anyconnect/anyconnect-linux64-4.10.04071-predeploy-k9.tar.gz /tmp
 cd /tmp
 tar -xzvf anyconnect-linux64-4.10.04071-predeploy-k9.tar.gz
 cd anyconnect-linux64-4.10.04071/
 cd vpn
 sudo ./vpn_install.sh
+
+# new ticketmaster vpn: 
+cp /home/juliano/googledrive/dinheiro/BairesDev/ViaPath/cisco-anyconnect/ticketmaster/cisco-secure-client-linux64-5.1.2.42-core-vpn-webdeploy-k9.sh /tmp
+cd /tmp
+sudo bash cisco-secure-client-linux64-5.1.2.42-core-vpn-webdeploy-k9.sh
