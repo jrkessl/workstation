@@ -4,7 +4,7 @@ set -e
 export myuser=juliano    # This is the user for which we will install stuff.
 export time=0            # This is how long to wait after some outputs so I can read them. 
 export results           # This is to summarize results at the end of the script.
-export transfuse_backup=juliano_transfusion_20230814_2206.tar.gz # This is the KDE config backup file taken with transfuse from another workstation.
+export transfuse_backup=juliano_transfusion_20240618_0845.tar.gz # This is the KDE config backup file taken with transfuse from another workstation.
 export results_file="./output.txt"
 
 echo "" | tee $results_file
