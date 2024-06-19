@@ -35,7 +35,7 @@ fi
 echo ""
 echo "Step 2 - install everything with apt"
 sleep $time
-sudo apt install jq vagrant curl filezilla keepassxc nmap postgresql-client-14 mysql-client-8.0 tree docker.io virtualbox kubectx -y
+sudo apt install jq vagrant curl filezilla keepassxc nmap postgresql-client-14 mysql-client-8.0 tree docker.io virtualbox kubectx k9s -y
 gpasswd -a ${myuser} docker
 echo "Everything with apt ..........installed or reinstalled now" | tee -a $results_file
 
