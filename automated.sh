@@ -6,6 +6,8 @@ export time=0            # This is how long to wait after some outputs so I can 
 export results           # This is to summarize results at the end of the script.
 export transfuse_backup=juliano_transfusion_20240618_0845.tar.gz # This is the KDE config backup file taken with transfuse from another workstation.
 export results_file="./output.txt"
+export SKIP_KDE_INSTALLATION="true" # let's default to skip this, as I plan to use mostly Kubuntu. 
+
 
 echo "" | tee $results_file
 
@@ -21,14 +23,18 @@ fi
 echo ""
 echo "Step 1 - install KDE"
 sleep $time
-# Note: KDE will ask for the default graphics provider. Select sddm. Consider automating this.
-# DEBIAN_FRONTEND=noninteractive This does not do any good. 
-if [[ $(apt list --installed | grep kde-plasma-desktop | wc -l) > 0 ]]; then # If KDE plasma is already installed
-    echo "KDE.......................... already installed" | tee -a $results_file
+if [[ $SKIP_KDE_INSTALLATION == "true" ]]; then 
+    echo "Skipping KDE installation."
 else
-    apt-get install kde-full -y
-    echo "Installed KDE. Now please reboot and run this script again." | tee -a $results_file
-    exit 0 
+    # Note: KDE will ask for the default graphics provider. Select sddm. Consider automating this.
+    # DEBIAN_FRONTEND=noninteractive This does not do any good. 
+    if [[ $(apt list --installed | grep kde-plasma-desktop | wc -l) > 0 ]]; then # If KDE plasma is already installed
+        echo "KDE.......................... already installed" | tee -a $results_file
+    else
+        apt-get install kde-full -y
+        echo "Installed KDE. Now please reboot and run this script again." | tee -a $results_file
+        exit 0 
+    fi
 fi
 
 # Everything with apt 
@@ -496,6 +502,7 @@ EOF
 
 echo ""
 echo "Read the summary of this run in file ${results_file}."
+exit 0
 
 # consider: adding "git recentb" command. Source: https://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
 # consider: installing piper and configuring ctrl + page up, ctrl + page down for the side buttons.
