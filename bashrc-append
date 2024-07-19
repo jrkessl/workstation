@@ -17,6 +17,8 @@ alias ga="git add ."
 alias gps="git push --push-option=ci.skip"
 alias switch-toy="kubectx PRD2325-sre-toy-eu-west-1"
 alias switch-dev="kubectx PRD1741-iccp-dev-eu-west-1"
+alias switch-nonprod9="kubectx nonprod9.us-east-1"
+alias switch-preprod9="kubectx preprod9.us-east-1"
 alias gfo="git fetch origin"
 
 # set bash prompt
