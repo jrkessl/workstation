@@ -519,6 +519,7 @@ exit 0
 # 2024-06-23 consider: automate adding this to "crontab -e -u juliano":
 #                @reboot /usr/bin/google-drive-ocamlfuse /home/juliano/googledrive -id <secret-id> -secret <secret-value>
 # 2024-07-23 consider: running one-time command "git config push.autoSetupRemote 'true'"
+# 2024-08-27 consider: adding eza and replacing ls aliases with eza aliases
 
 # alias gs="git status"
 # alias ga="git add ."
