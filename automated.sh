@@ -47,17 +47,17 @@ sudo apt install jq vagrant curl filezilla keepassxc nmap mysql-client-8.0 tree 
 gpasswd -a ${myuser} docker
 echo "Everything with apt ..........installed or reinstalled now" | tee -a $results_file
 
-echo ""
-echo "Step 6 - install Chrome"
-sleep $time
-if [[ $(apt list --installed | grep google-chrome-stable | wc -l) > 0 ]]; then # Is chrome already installed?
-    echo "Chrome....................... already installed" | tee -a $results_file
-else
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    sudo dpkg -i google-chrome-stable_current_amd64.deb
-    rm google-chrome-stable_current_amd64.deb
-    echo "Chrome....................... installed now" | tee -a $results_file
-fi
+# echo ""
+# echo "Step 6 - install Chrome"
+# sleep $time
+# if [[ $(apt list --installed | grep google-chrome-stable | wc -l) > 0 ]]; then # Is chrome already installed?
+#     echo "Chrome....................... already installed" | tee -a $results_file
+# else
+#     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+#     sudo dpkg -i google-chrome-stable_current_amd64.deb
+#     rm google-chrome-stable_current_amd64.deb
+#     echo "Chrome....................... installed now" | tee -a $results_file
+# fi
 
 # google-drive-ocamlfuse
 echo ""
