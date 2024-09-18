@@ -41,7 +41,9 @@ fi
 echo ""
 echo "Step 2 - install everything with apt"
 sleep $time
-sudo apt install jq vagrant curl filezilla keepassxc nmap mysql-client-8.0 tree docker.io virtualbox kubectx k9s -y
+sudo apt install jq vagrant curl filezilla keepassxc nmap mysql-client-8.0 tree docker.io virtualbox kubectx k9s ratbagd piper -y
+    # Note: ratbagd and piper are for managing Logitech mice.
+    # https://www.reddit.com/r/IntelligentGaming2020/comments/16hzt56/how_to_configure_and_use_gaming_mice_on_linux/
 gpasswd -a ${myuser} docker
 echo "Everything with apt ..........installed or reinstalled now" | tee -a $results_file
 
