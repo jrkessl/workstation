@@ -522,6 +522,10 @@ exit 0
 #                @reboot /usr/bin/google-drive-ocamlfuse /home/juliano/googledrive -id <secret-id> -secret <secret-value>
 # 2024-07-23 consider: running one-time command "git config push.autoSetupRemote 'true'"
 # 2024-08-27 consider: adding eza and replacing ls aliases with eza aliases
+# 2024-10-30 consider: creating $HOME/.curlrc file with content: 
+#    # return http response code
+#    -w "\n%{http_code}\n"
+#    Source: https://everything.curl.dev/cmdline/configfile.html
 
 # alias gs="git status"
 # alias ga="git add ."
