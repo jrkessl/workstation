@@ -41,7 +41,7 @@ fi
 echo ""
 echo "Step 2 - install everything with apt"
 sleep $time
-sudo apt install jq vagrant curl filezilla keepassxc nmap mysql-client-8.0 tree docker.io virtualbox kubectx k9s ratbagd piper -y
+sudo apt install jq vagrant curl filezilla keepassxc nmap mysql-client-8.0 tree docker.io virtualbox kubectx ratbagd piper -y
     # Note: ratbagd and piper are for managing Logitech mice.
     # https://www.reddit.com/r/IntelligentGaming2020/comments/16hzt56/how_to_configure_and_use_gaming_mice_on_linux/
 gpasswd -a ${myuser} docker
@@ -481,6 +481,15 @@ if [[ ! -e "/home/${myuser}/.ssh/id_rsa" ]]; then # Check if the file does not e
 else    
     echo "ssh key ..................... already done" | tee -a $results_file
 fi    
+
+echo ""
+echo "Step 28 - k9s 0.32.7"
+sleep $time
+# Install k9s. 
+# As of January 2025, k9s is no longer available on apt and the k9s snap version is old. And I don't want to bother installing another package manager. But we can manually download the current deb package for k9s and install it. 
+# They don't seem to provide a link to install the latest version, so we will have to check periodically to upgrade the link to the latest k9s at https://github.com/derailed/k9s/releases . 
+wget https://github.com/derailed/k9s/releases/download/v0.32.7/k9s_linux_amd64.deb -O /tmp/k9s_linux_amd64.deb
+apt install /tmp/k9s_linux_amd64.deb
 
 # now we print the result to standard output, to a file, then end. 
 cat <<EOF  | tee -a $results_file
