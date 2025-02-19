@@ -2,7 +2,7 @@
 
 # start of custom bashrc settings by Juliano
 export EDITOR=nano
-export LESS="N" # default variables for Less. https://relentlesscoding.com/posts/make-less-options-permanent-or-the-missing-lessrc/ 
+#export LESS="N" # default variables for Less. https://relentlesscoding.com/posts/make-less-options-permanent-or-the-missing-lessrc/ 
 alias k='kubectl'
 alias switch-ddev='aws eks update-kubeconfig --region us-east-2 --name gtl-k8s-ddev-eks-5f6ITy0B'
 alias switch-k8s-dev='aws eks update-kubeconfig --region us-west-2 --name gtl-k8s-dev --role-arn arn:aws:iam::516176675572:role/gtl-k8s-dev-pe-admin-team-access'
