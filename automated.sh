@@ -41,11 +41,19 @@ fi
 echo ""
 echo "Step 2 - install everything with apt"
 sleep $time
-sudo apt install jq vagrant curl filezilla keepassxc nmap mysql-client-8.0 tree docker.io virtualbox kubectx ratbagd piper -y
+apt_array="jq vagrant curl filezilla keepassxc nmap mysql-client-8.0 tree docker.io virtualbox kubectx ratbagd piper" # packages to be installed with apt must be in a list that will be iterated. That is because if they are installed all at once, any failure will cause all of them not to be installed.
     # Note: ratbagd and piper are for managing Logitech mice.
     # https://www.reddit.com/r/IntelligentGaming2020/comments/16hzt56/how_to_configure_and_use_gaming_mice_on_linux/
-gpasswd -a ${myuser} docker
-echo "Everything with apt ..........installed or reinstalled now" | tee -a $results_file
+for item in ${apt_array}; do
+    failure=false 
+    apt install "$item" -y || failure=true
+    if [[ $failure == "false" ]]; then
+        echo "Everything with apt ..........${item} - ok" | tee -a $results_file
+    else
+        echo "Everything with apt ..........${item} - failure" | tee -a $results_file
+    fi 
+done;
+gpasswd -a ${myuser} docker # because of docker 
 
 # echo ""
 # echo "Step 6 - install Chrome"
