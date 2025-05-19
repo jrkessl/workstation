@@ -7,7 +7,7 @@ export results           # This is to summarize results at the end of the script
 export transfuse_backup=juliano_transfusion_20240714_1729.tar.gz # This is the KDE config backup file taken with transfuse from another workstation.
 export results_file="./output.txt"
 export SKIP_KDE_INSTALLATION="true" # let's default to skip this, as I plan to use mostly Kubuntu. 
-
+export SOURCE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)" # Capture the folder from which this script runs
 
 echo "" | tee $results_file
 
@@ -496,9 +496,10 @@ if [[ ! -e "/home/${myuser}/.aws/config" && ! -e "/home/${myuser}/.aws/credentia
     #if [[ $(pwd) != "/home/juliano/workstation" ]]; then
     #    echo "whoops! we are not in the right folder"
     #fi
+    cd $SOURCE_DIR
     cp -r ./.aws /home/${myuser}/
-    chown -R ${myuser}:${myuser} ./.aws
-    chmod -R 700 ./.aws
+    chown -R ${myuser}:${myuser} /home/${myuser}/.aws
+    chmod -R 700 /home/${myuser}/.aws
     echo "AWS emptied credentials...... Done now" | tee -a $results_file
 else    
     echo "AWS emptied credentials...... already done" | tee -a $results_file
