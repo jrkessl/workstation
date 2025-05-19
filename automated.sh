@@ -205,16 +205,43 @@ fi
 # also consider: Plasma Customization Server ; https://store.kde.org/p/1298955/
 # also consider: https://github.com/Prayag2/konsave
 
+# Everything with apt 
 echo ""
-echo "Step 20 - Visual Studio Code"
+echo "Step 20 - install everything with snap"
 sleep $time
-if [[ $(apt list --installed | grep -E -- "^(code/now)|(code/stable)" | wc -l) > 0 ]]; then # Is it already installed?
-    echo "Visual Studio Code........... already installed" | tee -a $results_file
-else
-    curl https://az764295.vo.msecnd.net/stable/6c3e3dba23e8fadc360aed75ce363ba185c49794/code_1.81.1-1691620686_amd64.deb -o /tmp/code_1.81.1-1691620686_amd64.deb
-    apt install /tmp/code_1.81.1-1691620686_amd64.deb
-    echo "Visual Studio Code........... installed now" | tee -a $results_file
-fi
+confinement_strict=""
+confinement_classic="code"
+confinement_devmode=""
+
+for item in ${confinement_strict}; do
+    failure=false 
+    sudo snap install "$item" || failure=true
+    if [[ $failure == "false" ]]; then
+        echo "Everything with snap .........${item} - ok" | tee -a $results_file
+    else
+        echo "Everything with snap .........${item} - failure" | tee -a $results_file
+    fi 
+done;
+
+for item in ${confinement_classic}; do
+    failure=false 
+    sudo snap install "$item" --classic || failure=true
+    if [[ $failure == "false" ]]; then
+        echo "Everything with snap .........${item} - ok" | tee -a $results_file
+    else
+        echo "Everything with snap .........${item} - failure" | tee -a $results_file
+    fi 
+done;
+
+for item in ${confinement_devmode}; do
+    failure=false 
+    sudo snap install "$item" --devmode || failure=true
+    if [[ $failure == "false" ]]; then
+        echo "Everything with snap .........${item} - ok" | tee -a $results_file
+    else
+        echo "Everything with snap .........${item} - failure" | tee -a $results_file
+    fi 
+done;
 
 echo ""
 echo "Step 21 - add ${myuser} to sudoers"
