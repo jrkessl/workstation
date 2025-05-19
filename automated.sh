@@ -196,7 +196,7 @@ else
     echo "Or choose to quit and do nothing." | tee -a $results_file
     echo "If you see error 'Application plasmashell could not be found...' reboot the workstation and the updated configs will be there." | tee -a $results_file
     echo ""
-    su juliano -c "./transfuse.sh"
+    su juliano -c "./transfuse"
     echo ""
     echo "Done with transfuse." | tee -a $results_file
     cd $olddir
