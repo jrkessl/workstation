@@ -64,10 +64,9 @@ else
 fi
 unset color_prompt
 
-alias ls='eza'
-alias lat="eza -la --sort oldest "
-alias ll='eza -alhF'
-alias la='eza -A'
-alias l='eza -CF'
+alias ls='eza --color=always'
+alias lat="eza -la --sort oldest --color=always"
+alias ll='eza -alhF --color=always'
+alias la='eza -A --color=always'
 
 #juliano-bashrc-config-done
