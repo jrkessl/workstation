@@ -559,7 +559,6 @@ exit 0
 
 # consider: adding "git recentb" command. Source: https://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
 # consider: installing piper and configuring ctrl + page up, ctrl + page down for the side buttons.
-# consider: enabling numlock on in boot in plasma keyboard configurations.
 
 # 2024-01-07: looks like konsole copy paste shortcuts are no longer working. 
 # 2024-01-07 consider: reducing mouse sensitivity in KDE to level 4.
