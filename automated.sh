@@ -82,7 +82,13 @@ else
     chmod -R 700 "/home/${myuser}/googledrive"
     echo "google-drive-ocamlfuse....... installed now" | tee -a $results_file
 fi
-# then, as juliano (or whatever user), to mount: $ google-drive-ocamlfuse /home/juliano/googledrive
+# Then, as the user ($myuser), to mount: 
+# Mount it every time by putting this into the cron file:
+#  $ crontab -e -u juliano 
+#  (replace "juliano" if that is not the user)
+#  Then put the text between the quotes in there: "@reboot /usr/bin/google-drive-ocamlfuse /home/juliano/googledrive -id <secret-id> -secret <secret-value>"
+#  Run it once in interactive mode, using command "/usr/bin/google-drive-ocamlfuse /home/juliano/googledrive -id <secret-id> -secret <secret-value>", to make sure authentication works. That is needed just once.
+#  Replace <secret-id> and <secret-value> with your Google drive credentials. See how to get your credentials here: https://github.com/astrada/google-drive-ocamlfuse/wiki/Authorization
 
 # helm 3
 echo ""
@@ -571,6 +577,10 @@ exit 0
 #    # return http response code
 #    -w "\n%{http_code}\n"
 #    Source: https://everything.curl.dev/cmdline/configfile.html
+
+# 2025-07-26 issue: shortcuts "gh" and "gl" are root-owned; just be juliano-owned 
+# 2025-07-26 issue: eza is not being installed 
+# 2025-07-26 issue: skopeo is not being installed 
 
 # alias gs="git status"
 # alias ga="git add ."
