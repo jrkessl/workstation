@@ -559,8 +559,6 @@ exit 0
 
 # consider: adding "git recentb" command. Source: https://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
 # consider: installing piper and configuring ctrl + page up, ctrl + page down for the side buttons.
-
-# 2024-01-07: looks like konsole copy paste shortcuts are no longer working. 
 # 2024-01-07 consider: reducing mouse sensitivity in KDE to level 4.
 # 2024-01-07 consider: "configure icons-only task manager" > behavior > group > by program name. 
 # 2024-01-09 consider: KDE Settings > Notifications > Popup > Choose custom position > lower right corner. 
