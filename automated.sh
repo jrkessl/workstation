@@ -563,7 +563,6 @@ exit 0
 # 2024-01-07 consider: "configure icons-only task manager" > behavior > group > by program name. 
 # 2024-01-09 consider: KDE Settings > Notifications > Popup > Choose custom position > lower right corner. 
 # 2024-04-29 fix: ~/github directory is owned by root, must be owned by the user (and most likely the gitlab dir as well)
-# 2024-04-29 fix: dark mode did not get enabled.
 # 2024-04-29 fix: that error (.aws directory does not exist) or something like that, persists. Seems like it exists only in the first run. 
 # 2024-06-17 consider: disable virtual keyboard on SDDE login screen: https://askubuntu.com/questions/1278431/how-to-get-rid-of-the-virtual-keyboard-that-appears-in-login-screen-on-kde-plasm
 # 2024-06-23 consider: automate adding this to "crontab -e -u juliano":
