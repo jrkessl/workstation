@@ -2,23 +2,19 @@
 
 # start of custom bashrc settings by Juliano
 export EDITOR=nano
-#export LESS="N" # default variables for Less. https://relentlesscoding.com/posts/make-less-options-permanent-or-the-missing-lessrc/ 
-alias k='kubectl'
-alias switch-ddev='aws eks update-kubeconfig --region us-east-2 --name gtl-k8s-ddev-eks-5f6ITy0B'
-alias switch-k8s-dev='aws eks update-kubeconfig --region us-west-2 --name gtl-k8s-dev --role-arn arn:aws:iam::516176675572:role/gtl-k8s-dev-pe-admin-team-access'
-alias switch-adev='aws eks update-kubeconfig --region us-east-2 --name gtl-k8s-adev-eks-X2vROHJG'
-alias switch-prod='export AWS_PROFILE=prod8650 && aws eks update-kubeconfig --region us-west-2 --name cmd-cmdusaw2-eks-rFgxDvxP'
-alias switch-k8cmd="export AWS_PROFILE=sec-ple && aws eks --region us-west-2 update-kubeconfig --name k8cmd"
-alias tt='history | tail -n 100 | grep'
-alias map-googledrive='google-drive-ocamlfuse /home/juliano/googledrive -id <id> -secret <secret>'
-export KEYS=/home/juliano/Documents/keys
+export LESS="N" # default variables for Less. https://relentlesscoding.com/posts/make-less-options-permanent-or-the-missing-lessrc/ 
 export PATH=${PATH}:/home/juliano/.local/bin
+
+# git alises
 alias gs="git status"
 alias ga="git add ."
 alias gl="git log --oneline"
 alias gps="git push --push-option=ci.skip"
-alias switch-toy="kubectx PRD2325-sre-toy-eu-west-1"
-alias switch-dev="kubectx PRD1741-iccp-dev-eu-west-1"
+alias gfo="git fetch origin"
+alias cmp="git checkout master || git checkout main && git pull"
+
+# k8s aliases
+alias k='kubectl'
 alias switch-nonprod9="kubectx nonprod9.us-east-1"
 alias switch-nonprod12="kubectx nonprod12.eu-west-1"
 alias switch-preprod9="kubectx preprod9.us-east-1"
@@ -38,7 +34,15 @@ alias switch-prodpci11="kubectx prodpci11.eu-central-1"
 alias switch-prodpci12="kubectx prodpci12.eu-west-1"
 alias switch-sharedsvcs1="kubectx sharedsvcs1.us-east-1"
 alias switch-sharedsvcs3="kubectx sharedsvcs3.eu-central-1"
-alias gfo="git fetch origin"
+
+# eza aliases
+alias ls='eza --color=always'
+alias lat="eza -la --sort oldest --color=always"
+alias ll='eza -alhF --color=always'
+alias la='eza -A --color=always'
+
+# other aliases
+alias tt='history | tail -n 100 | grep'
 
 # set bash prompt
 parse_git_branch() {
@@ -63,10 +67,5 @@ else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:$( readlink -f . )\$ '
 fi
 unset color_prompt
-
-alias ls='eza --color=always'
-alias lat="eza -la --sort oldest --color=always"
-alias ll='eza -alhF --color=always'
-alias la='eza -A --color=always'
 
 #juliano-bashrc-config-done
