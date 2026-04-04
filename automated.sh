@@ -578,9 +578,6 @@ exit 0
 # 2025-07-26 issue: eza is not being installed 
 # 2025-07-26 issue: skopeo is not being installed 
 
-# alias gs="git status"
-# alias ga="git add ."
-
 
 
 # old vpn: 
