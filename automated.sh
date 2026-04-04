@@ -542,9 +542,10 @@ EOF
 cat <<EOF  | tee -a $results_file
 
 Take note of steps that can't/won't be automated:
- - add local machine public key to github/gitlab account
- - configure local git username & email
- - sync accounts in Visual Studio Code, Google Chrome, Firefox
+ - Add local machine public key to github/gitlab account
+ - Configure local git username & email
+ - Sync accounts in Visual Studio Code, Google Chrome, Firefox
+ - Install atuin (the installation script has prompts and I need to research if there is an unattended way to run it: "bash <(curl --proto '=https' --tlsv1.2 -sSf https://setup.atuin.sh)")
 
 If you want Cisco company VPN installed, check here: 
 https://github.com/jrkessl/workstation/blob/d953a5b9b940c827582ce404a2aa06e008a18cb7/workstation.sh#L182
