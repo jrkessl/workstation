@@ -62,8 +62,8 @@ gpasswd -a ${myuser} docker # because of docker
 #     echo "Chrome....................... already installed" | tee -a $results_file
 # else
 #     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-#     sudo dpkg -i google-chrome-stable_current_amd64.deb
-#     rm google-chrome-stable_current_amd64.deb
+     sudo dpkg -i google-chrome-stable_current_amd64.deb
+     rm google-chrome-stable_current_amd64.deb
 #     echo "Chrome....................... installed now" | tee -a $results_file
 # fi
 
@@ -578,8 +578,15 @@ exit 0
 # 2025-07-26 issue: shortcuts "gh" and "gl" are root-owned; just be juliano-owned 
 # 2025-07-26 issue: eza is not being installed 
 # 2025-07-26 issue: skopeo is not being installed 
-
-
+# 2026-08-23: upgrade kubectl and swap to apt method (patch versions will then be automatic when running apt upgrade). Use commands below. Also consider picking a version beyond 1.36:
+    # sudo apt-get install -y ca-certificates curl gpg
+    # sudo mkdir -p -m 755 /etc/apt/keyrings
+    # curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.36/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+    # sudo chmod 644 /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+    # echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.36/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+    # sudo chmod 644 /etc/apt/sources.list.d/kubernetes.list
+    # sudo apt-get update
+    # sudo apt-get install -y kubectl
 
 # old vpn: 
 cp /home/juliano/googledrive/dinheiro/BairesDev/ViaPath/cisco-anyconnect/anyconnect-linux64-4.10.04071-predeploy-k9.tar.gz /tmp
