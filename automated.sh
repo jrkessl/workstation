@@ -524,14 +524,15 @@ else
     echo "ssh key ..................... already done" | tee -a $results_file
 fi    
 
-echo ""
-echo "Step 28 - k9s 0.32.7"
-sleep $time
-# Install k9s. 
-# As of January 2025, k9s is no longer available on apt and the k9s snap version is old. And I don't want to bother installing another package manager. But we can manually download the current deb package for k9s and install it. 
-# They don't seem to provide a link to install the latest version, so we will have to check periodically to upgrade the link to the latest k9s at https://github.com/derailed/k9s/releases . 
-wget https://github.com/derailed/k9s/releases/download/v0.32.7/k9s_linux_amd64.deb -O /tmp/k9s_linux_amd64.deb
-apt install /tmp/k9s_linux_amd64.deb
+# update 2026-08-24. K9s 0.32 is way too old. Need a package manager. Replace the content below with a package manager installer. Maybe brew. 
+# echo ""
+# echo "Step 28 - k9s 0.32.7"
+# sleep $time
+# # Install k9s. 
+# # As of January 2025, k9s is no longer available on apt and the k9s snap version is old. And I don't want to bother installing another package manager. But we can manually download the current deb package for k9s and install it. 
+# # They don't seem to provide a link to install the latest version, so we will have to check periodically to upgrade the link to the latest k9s at https://github.com/derailed/k9s/releases . 
+# wget https://github.com/derailed/k9s/releases/download/v0.32.7/k9s_linux_amd64.deb -O /tmp/k9s_linux_amd64.deb
+# apt install /tmp/k9s_linux_amd64.deb
 
 # now we print the result to standard output, to a file, then end. 
 cat <<EOF  | tee -a $results_file
@@ -587,6 +588,7 @@ exit 0
     # sudo chmod 644 /etc/apt/sources.list.d/kubernetes.list
     # sudo apt-get update
     # sudo apt-get install -y kubectl
+# 2026-08-24 k9s installation method no longer valid. Need overhauling. 
 
 # old vpn: 
 cp /home/juliano/googledrive/dinheiro/BairesDev/ViaPath/cisco-anyconnect/anyconnect-linux64-4.10.04071-predeploy-k9.tar.gz /tmp
