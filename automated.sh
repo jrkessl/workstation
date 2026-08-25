@@ -86,7 +86,7 @@ fi
 # Mount it every time by putting this into the cron file:
 #  $ crontab -e -u juliano 
 #  (replace "juliano" if that is not the user)
-#  Then put the text between the quotes in there: "@reboot /usr/bin/google-drive-ocamlfuse /home/juliano/googledrive -id <secret-id> -secret <secret-value>"
+#  Then put the text between the quotes in there: "@reboot { waited=0; while ! getent hosts accounts.google.com >/dev/null 2>&1 && [ "$waited" -lt 120 ]; do sleep 2; waited=$((waited+2)); done; echo "waited ${waited}s for accounts.google.com to resolve"; /usr/bin/google-drive-ocamlfuse -debug /home/juliano/googledrive -id <secret-id> -secret <secret-value> ; } > /home/juliano/google-drive-ocamlfuse.log 2>&1"
 #  Run it once in interactive mode, using command "/usr/bin/google-drive-ocamlfuse /home/juliano/googledrive -id <secret-id> -secret <secret-value>", to make sure authentication works. That is needed just once.
 #  Replace <secret-id> and <secret-value> with your Google drive credentials. See how to get your credentials here: https://github.com/astrada/google-drive-ocamlfuse/wiki/Authorization
 
