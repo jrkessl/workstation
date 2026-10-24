@@ -2,7 +2,7 @@
 
 # start of custom bashrc settings by Juliano
 export EDITOR=nano
-export LESS="N" # default variables for Less. https://relentlesscoding.com/posts/make-less-options-permanent-or-the-missing-lessrc/ 
+#export LESS="N" # default variables for Less. https://relentlesscoding.com/posts/make-less-options-permanent-or-the-missing-lessrc/ 
 export PATH=${PATH}:/home/juliano/.local/bin
 
 # git alises
@@ -43,6 +43,10 @@ alias la='eza -A --color=always'
 
 # other aliases
 alias tt='history | tail -n 100 | grep'
+alias cla="clear; claude; clear"
+
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash)"
 
 # set bash prompt
 parse_git_branch() {
